@@ -11,6 +11,7 @@ gem 'ember-source'
 gem 'emblem-rails'
 gem 'github_api'
 gem 'twitter'
+gem 'goodreads'
 
 # Gems used only for assets and not required
 # in production environments by default.

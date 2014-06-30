@@ -1,6 +1,7 @@
 class Api::V1::AlexPelanController < ApplicationController
 	require "github_helper"
 	require "twitter_helper"
+	require "goodreads_helper"
 
 	respond_to :json
 
@@ -19,5 +20,9 @@ class Api::V1::AlexPelanController < ApplicationController
 		respond_with tweets
 	end
 
-
+	def currently_reading
+		goodreads = GoodreadsHelper.new
+		currently_reading_shelf = goodreads.get_currently_reading
+		respond_with currently_reading_shelf
+	end
 end
