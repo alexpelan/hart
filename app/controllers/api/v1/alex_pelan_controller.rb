@@ -25,4 +25,11 @@ class Api::V1::AlexPelanController < ApplicationController
 		currently_reading_shelf = goodreads.get_currently_reading
 		respond_with currently_reading_shelf
 	end
+
+	def recently_played
+		count = params[:count]
+		lastfm = LastfmHelper.new
+		recently_played_tracks = lastfm.get_recently_played(count)
+		respond_with recently_played_tracks
+	end
 end
