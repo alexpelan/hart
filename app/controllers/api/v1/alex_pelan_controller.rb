@@ -32,4 +32,10 @@ class Api::V1::AlexPelanController < ApplicationController
 		recently_played_tracks = lastfm.get_recently_played(count)
 		respond_with recently_played_tracks
 	end
+
+	#placeholder for now since we're awaiting an API key from Untappd
+	def recently_drank
+		recently_drank_beers = []
+		respond_with recently_drank_beers
+	end
 end
