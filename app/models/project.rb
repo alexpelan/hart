@@ -1,12 +1,12 @@
-class Project
-        attr_accessor :name	
-	attr_accessor :watchers_count
-	attr_accessor :stargazers_count
-	attr_accessor :project_url
-	attr_accessor :repo_url
-	attr_accessor :language
-	attr_accessor :description
-	attr_accessor :extra_display_information #basically a catch-all to modify the display without breaking the versioning of the API
+class Project < ActiveRecord::Base
+	attr_accessible :name, :watchers_count, :stargazers_count, :project_url, :repo_url, :language, :description, :extra_display_information
+
+	validates :name, presence: true
+	validates :watchers_count, presence: true
+	validates :stargazers_count, presence: true
+	validates :repo_url, presence: true
+	validates :language, presence: true
+	
 
 	def populate_attributes(repo)
 		self.name = repo.name

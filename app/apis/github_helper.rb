@@ -11,6 +11,7 @@ class GithubHelper
 		lujack = @github.repos.get user: "alexpelan", repo: "lujack"
           	bertelli = @github.repos.get user: "alexpelan", repo: "bertelli"
 
+
 		#Take only the attributes that we're interested in, as well as calculated information
 		hart_project = Project.new
 		hart_project.populate_attributes(hart)
@@ -25,9 +26,11 @@ class GithubHelper
 		bertelli_project.populate_attributes(hart)
 		#TODO: add video/screenshot
 	
-
-		return [hart_project, lujack_project, bertelli_project]
-
+		if hart_project.valid? and lujack_project.valid? and bertelli_project.valid?
+			return [hart_project, lujack_project, bertelli_project]
+		else
+			return []
+		end
 	end	
 
 
