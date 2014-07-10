@@ -2,6 +2,7 @@ class Api::V1::AlexPelanController < ApplicationController
 	require "github_helper"
 	require "twitter_helper"
 	require "goodreads_helper"
+	require "lastfm_helper"
 
 	respond_to :json
 
@@ -31,11 +32,5 @@ class Api::V1::AlexPelanController < ApplicationController
 		lastfm = LastfmHelper.new
 		recently_played_tracks = lastfm.get_recently_played(count)
 		respond_with recently_played_tracks
-	end
-
-	#placeholder for now since we're awaiting an API key from Untappd
-	def recently_drank
-		recently_drank_beers = []
-		respond_with recently_drank_beers
 	end
 end

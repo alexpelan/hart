@@ -31,4 +31,19 @@ describe Project do
 	it "is invalid without a language" do
 		expect(Project.new(language: nil)).to have(1).errors_on(:language)
 	end
+
+	it "assigns attributes from github response to project" do
+		github = Github.new
+		hart = github.repos.get user: "alexpelan", repo: "hart"
+		hart_project = Project.new
+		hart_project.populate_attributes(hart)	
+		expect(hart_project.name).to eq hart.name
+		expect(hart_project.watchers_count).to eq hart.watchers_count
+		expect(hart_project.stargazers_count).to eq hart.stargazers_count
+		expect(hart_project.repo_url).to eq hart.html_url
+		expect(hart_project.project_url).to eq hart.homepage
+		expect(hart_project.language).to eq hart.language
+		expect(hart_project.description).to eq hart.description
+	end
+
 end
