@@ -70,9 +70,18 @@ describe Api::V1::AlexPelanController do
 		end
 	end
 
-	#unimplemented for now
 	describe 'GET #recently_drank' do
-		it "contains the proper JSON keys for beers"
+		before(:each) {get :recently_drank, count: 50, :format => :json}
+
+		it "responds with the requested number of beers" do
+			expect(json["checkins"]["count"]).to eq 50
+		end
+
+		it "contains the proper JSON keys for beers" do
+			first_checkin = json["checkins"]["items"][0]
+			expect(first_checkin).to have_key("beer")
+			expect(first_checkin).to have_key("brewery")
+		end
 	end
 
 end
