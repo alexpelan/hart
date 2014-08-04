@@ -1,11 +1,13 @@
 // For more information see: http://emberjs.com/guides/routing
-
-
-AppName.Router.map(function() {
-  // this.resource('posts');
-});
-
 App.Router.reopen({
 	location: 'auto',
-	rootURL: '/
+	rootURL: '/'
 })
+
+App.Router.map(function() {
+  	this.resource('application', { path: '/'}, function() {
+		this.route('portfolio');
+		this.route('tweets');
+	})		
+});
+
