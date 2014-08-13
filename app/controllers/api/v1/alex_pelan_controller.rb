@@ -41,4 +41,5 @@ class Api::V1::AlexPelanController < ApplicationController
 		recently_drank_beers = untappd.get_recently_drank(count)
 		respond_with recently_drank_beers
 	end
+
 end

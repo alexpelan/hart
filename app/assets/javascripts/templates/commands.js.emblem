@@ -1,0 +1,8 @@
+h1 Terminal 
+
+ul
+	each command in controller
+		li= command.input
+		li= command.output
+
+render "commands_entry"

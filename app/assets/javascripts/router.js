@@ -5,9 +5,6 @@ App.Router.reopen({
 })
 
 App.Router.map(function() {
-  	this.resource('application', { path: '/'}, function() {
-		this.route('portfolio');
-		this.route('tweets');
-	})		
+  	this.resource('commands', { path: '/'})		
 });
 
