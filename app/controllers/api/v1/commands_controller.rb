@@ -10,6 +10,11 @@ class Api::V1::CommandsController < ApplicationController
 		respond_with Command.all
 	end
 
+	def destroy
+		command = Command.find(params[:id])
+		respond_with command.destroy
+	end
+
 
 
 end

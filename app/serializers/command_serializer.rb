@@ -1,3 +1,3 @@
 class CommandSerializer < ActiveModel::Serializer
-	attributes :input, :output
+	attributes :id, :input, :output
 end

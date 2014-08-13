@@ -1,13 +1,5 @@
 App.CommandsEntryController = Ember.ArrayController.extend({
 
-	onSuccess: function(){
-		console.log("success");
-	},
-
-	onFailure: function(){
-		console.log("failure");
-	},
-	
 	actions: {
 		
 		respondToCommand: function(){
@@ -15,12 +7,21 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			userInput = userInput.toLowerCase();
 			var output;
 			if (userInput === "portfolio"){
-				//this.transitionToRoute("portfolio");
 				output = "Here's a portfolio for you";
 			}
 			else if (userInput === "tweets"){
-				//this.transitionToRoute("tweets");
 				output = "Here are some tweetz";
+			}
+			else if (userInput === "clear"){
+				this.store.find("command").then(function(command){
+					command.content.forEach(function(cmd){
+						Ember.run.once(this, function(){
+							cmd.deleteRecord();
+							cmd.save();
+							});
+						}, this);
+					});
+				return;
 			}
 			var command = this.store.createRecord("command", {input: userInput, output: output});
 			command.save();
