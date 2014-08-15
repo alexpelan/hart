@@ -8,6 +8,10 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend({
 
 });
 
+
 DS.RESTAdapter.reopen({
 	namespace: 'api/v1'
 })
+
+//Use fixture adapter for "history" since we don't care if it persists beyond the session
+App.CommandAdapter = DS.FixtureAdapter.extend();

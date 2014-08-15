@@ -3,6 +3,6 @@ h1 Terminal
 ul
 	each command in controller
 		li= command.input
-		li= command.output
+		view App.CommandOutputView contentBinding="command"
 
 render "commands_entry"

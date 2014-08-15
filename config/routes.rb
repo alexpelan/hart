@@ -7,7 +7,6 @@ Hart::Application.routes.draw do
 			get 'currently_reading', to: 'alex_pelan#currently_reading', as: 'currently_reading'
 			get 'recently_played', to: 'alex_pelan#recently_played', as: 'recently_played'
 			get 'recently_drank', to: 'alex_pelan#recently_drank', as: 'recently_drank'
-			resources :commands
 		end
 	end
 

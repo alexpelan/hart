@@ -6,11 +6,14 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			var userInput = this.get("command");
 			userInput = userInput.toLowerCase();
 			var output;
+			var command;
 			if (userInput === "portfolio"){
 				output = "Here's a portfolio for you";
+				command = this.store.createRecord("command", {input: userInput, output: output, type: "portfolio"});
 			}
 			else if (userInput === "tweets"){
 				output = "Here are some tweetz";
+				command = this.store.createRecord("command", {input: userInput, output: output, type: "tweets"});
 			}
 			else if (userInput === "clear"){
 				this.store.find("command").then(function(command){
@@ -23,7 +26,6 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 					});
 				return;
 			}
-			var command = this.store.createRecord("command", {input: userInput, output: output});
 			command.save();
 		},
 		 
