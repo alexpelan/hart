@@ -1,1 +1,4 @@
-| testing number one
+each tweet in command.tweets
+	li= tweet.username
+	li= tweet.text
+	li= tweet.timestamp

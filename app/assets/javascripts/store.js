@@ -15,3 +15,5 @@ DS.RESTAdapter.reopen({
 
 //Use fixture adapter for "history" since we don't care if it persists beyond the session
 App.CommandAdapter = DS.FixtureAdapter.extend();
+App.TweetsAdapter = DS.FixtureAdapter.extend();
+App.TweetAdapter = DS.FixtureAdapter.extend();

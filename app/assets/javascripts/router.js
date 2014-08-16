@@ -5,6 +5,6 @@ App.Router.reopen({
 })
 
 App.Router.map(function() {
-  	this.resource('commands', { path: '/'})		
+  	this.resource('commands', { path: '/'});
 });
 
