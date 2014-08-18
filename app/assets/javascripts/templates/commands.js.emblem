@@ -1,8 +1,9 @@
-h1 Terminal 
+.terminal_styling
+	h1 Terminal 
 
-ul
-	each command in controller
-		li= command.input
-		view App.CommandOutputView contentBinding="command"
+	ul
+		each command in controller
+			li= command.input
+			view App.CommandOutputView contentBinding="command"
 
-render "commands_entry"
+	render "commands_entry"

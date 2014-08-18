@@ -11,3 +11,43 @@
  *= require_self
  *= require_tree .
  */
+body{
+	background-color: #000000;
+}
+
+.terminal_styling{
+	font-family: "Andale Mono";
+	font-size: 12pt;
+	color: #00F94F;
+}
+
+/*.fixed_footer{
+	position: fixed;
+	width:100%;
+	bottom: 0px;
+}*/
+
+input[type="submit"]{
+	background-color: #000000;
+	border-color: #00F94F;
+}
+
+input[type="text"]{
+	background-color: #000000;
+	border-color: #000000;
+}
+
+ul{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+ul li:before{
+	content: 'alexpelan.com:> ';
+	margin: 0;
+}
+
+input:focus{
+	outline: none;
+}
