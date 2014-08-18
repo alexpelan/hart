@@ -1,4 +1,3 @@
-each tweet in command.tweets
-	li= tweet.username
-	li= tweet.text
-	li= tweet.timestamp
+each tweet in command.tweets.tweet_records
+	tweet.text
+	br

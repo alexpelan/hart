@@ -6,7 +6,6 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			var userInput = this.get("command");
 			userInput = userInput.toLowerCase();
 			var output;
-			var command;
 			if (userInput === "portfolio"){
 				output = "Here's a portfolio for you";
 				command = this.store.createRecord("command", {input: userInput, output: output, type: "portfolio"});
@@ -15,8 +14,8 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			else if (userInput === "tweets"){
 				output = "Here are some tweetz";
 				//Have to create records up here because we don't have access to this.store in the callback
-				command = this.store.createRecord("command", {input: userInput, output: output, type: "tweets"})
-				tweets = this.store.createRecord("tweets");
+				tweets = this.store.createRecord("tweets", {});
+				command = this.store.createRecord("command", {input: userInput, output: output, type: "tweets", tweets: tweets})
 				tweets.get_tweets_from_server().then(
 					function(response){
 						tweets.link_to_command(command);
