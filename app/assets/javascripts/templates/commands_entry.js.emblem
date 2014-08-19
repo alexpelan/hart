@@ -1,5 +1,5 @@
 .fixed_footer
 	form
 		label alexpelan.com> 	
-		view Ember.TextField placeholder='Enter your command here (type help for help)' value=command classNames="terminal_styling command"
+		view Ember.TextField value=command classNames="terminal_styling command"
 		input class='terminal_styling' type='submit' value='Submit' click='respondToCommand'

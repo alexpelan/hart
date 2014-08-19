@@ -12,7 +12,7 @@
  *= require_tree .
  */
 body{
-	background-color: #000000;
+	background-color: #191919;
 }
 
 .terminal_styling{
@@ -28,13 +28,13 @@ body{
 }*/
 
 input[type="submit"]{
-	background-color: #000000;
+	background-color: #191919;
 	border-color: #00F94F;
 }
 
 input[type="text"]{
-	background-color: #000000;
-	border-color: #000000;
+	background-color: #191919;
+	border-color: #191919;
 }
 
 ul{
@@ -50,4 +50,12 @@ ul li:before{
 
 input:focus{
 	outline: none;
+}
+
+a{
+	color: #7EC0EE;
+}
+
+.hashtag_or_reply{
+	color: #C23621;
 }
