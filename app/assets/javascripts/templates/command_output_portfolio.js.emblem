@@ -1,1 +1,3 @@
-| testing output two
+each project in command.portfolio.projects
+	project.name
+	br

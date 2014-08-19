@@ -7,9 +7,15 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			var tokens = userInput.split(" ");
 			input = tokens[0].toLowerCase();
 			var output;
+			//TODO: factor out the contents of each if statement to subroutine - getting a litle long
 			if (input === "portfolio"){
-				output = "Here's a portfolio for you";
-				command = this.store.createRecord("command", {input: userInput, output: output, type: "portfolio"});
+				portfolio = this.store.createRecord("portfolio", {});
+				command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
+				portfolio.get_projects_from_github().then(
+					function(response){
+						portfolio.populate_attributes(response);
+						command.save();
+					});
 				command.save();
 			}
 			else if (input === "tweets"){
