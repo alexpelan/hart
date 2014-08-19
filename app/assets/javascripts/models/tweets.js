@@ -3,8 +3,10 @@ App.Tweets = DS.Model.extend({
 	command: DS.belongsTo("command"),
 	tweet_records: DS.hasMany("tweet"),
 	
-	get_tweets_from_server: function(){
-		return $.getJSON("http://localhost:3000/api/v1/tweets.json");
+	get_tweets_from_server: function(number_of_tweets){
+		var number_of_tweets_string = "?count=" + number_of_tweets;
+		var request_url = "http://localhost:3000/api/v1/tweets.json" + number_of_tweets_string; 
+		return $.getJSON(request_url);
 	},
 
 	populate_attributes: function(response){
@@ -57,8 +59,13 @@ App.Tweets = DS.Model.extend({
 		var i;
 		var parsed_text = "";
 		for(i = 0; i < words.length; i++){
-			if( words[i][0] === "#" || words[i][0] === "@"){
-				words[i] = '<span class="hashtag_or_reply">' + words[i] + '</span>';
+			if( words[i][0] === "#"){
+				var hashtag_without_pound = words[i].slice(1);
+				words[i] = '<a class = "hashtag_or_reply" href="http://www.twitter.com/hashtag/' + hashtag_without_pound + '">' + words[i] + '</a>';
+			}
+			else if(words[i][0] === "@"){
+				var username = words[i].slice(1);
+				words[i] = '<a class = "hashtag_or_reply" href="http://www.twitter.com/' + username + '">' + words[i] + '</a>';
 			}
 
 			parsed_text = parsed_text + words[i] + " ";
