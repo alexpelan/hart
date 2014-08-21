@@ -1,0 +1,8 @@
+span My most recently scrobbled songs on Last.fm
+each song in command.songs.song_records
+	br
+	span.hashtag_or_reply = song.title
+	| -
+	song.artist_name
+	| from the album 
+	song.album_name

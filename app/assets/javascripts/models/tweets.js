@@ -11,7 +11,7 @@ App.Tweets = DS.Model.extend({
 
 	populate_attributes: function(response){
 		tweets = response["alex_pelan"];
-		var i
+		var i;
 		for (i=0; i<tweets.length; i++){
 			var text = tweets[i].text;
 			var username = tweets[i].user.screen_name;

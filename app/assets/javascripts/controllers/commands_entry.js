@@ -19,14 +19,8 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				command.save();
 			}
 			else if (input === "tweets"){
-				var number_of_tweets = 5;
-				if (tokens.length > 1){
-					number_of_tweets = tokens[1];
-					number_of_tweets = parseInt(number_of_tweets)
-					if (isNaN(number_of_tweets)){
-						number_of_tweets = 5;
-					}
-				}
+				var number_of_tweets = this.parse_number_of_objects_argument(tokens, 5);
+				
 				//Have to create records up here because we don't have access to this.store in the callback
 				tweets = this.store.createRecord("tweets", {});
 				command = this.store.createRecord("command", {input: userInput, type: "tweets", tweets: tweets})
@@ -34,6 +28,17 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 					function(response){
 						tweets.link_to_command(command);
 						tweets.populate_attributes(response);
+						command.save();
+					});
+			}
+			else if (input === "music"){
+				var number_of_songs = this.parse_number_of_objects_argument(tokens, 10);
+			
+				var songs = this.store.createRecord("songs", {});
+				var command = this.store.createRecord("command", {input: userInput, type: "songs", songs: songs});
+				songs.get_songs_from_lastfm(number_of_songs).then(
+					function(response){
+						songs.populate_attributes(response);
 						command.save();
 					});
 			}
@@ -52,6 +57,21 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 		},
 		 
 
-	}		
+	},
+
+	parse_number_of_objects_argument: function(tokens, default_value){
+		if (tokens.length > 1){
+			number_of_objects = tokens[1];
+			number_of_objects = parseInt(number_of_objects)
+			if (isNaN(number_of_objects)){
+				number_of_tweets = default_value;
+			}
+		}
+		else{
+			number_of_objects = default_value;
+		}
+
+		return number_of_objects;
+	},		  
 
 });

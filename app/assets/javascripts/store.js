@@ -21,6 +21,3 @@ DS.JSONSerializer.reopen({
 App.ApplicationAdapter = DS.FixtureAdapter.extend({
 
 });
-
-
-

@@ -9,6 +9,9 @@ App.CommandOutputView = Ember.View.extend({
 		else if (contentType === "portfolio"){
 			return "CommandOutputPortfolio";
 		}
+		else if (contentType === "songs"){
+			return "CommandOutputSongs";
+		}
 	}.property(),
 
 })
