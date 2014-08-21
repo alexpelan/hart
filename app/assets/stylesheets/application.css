@@ -20,7 +20,6 @@ body{
 	font-size: 12pt;
 	color: #00F94F;
 }
-
 /*.fixed_footer{
 	position: fixed;
 	width:100%;
@@ -43,7 +42,7 @@ ul{
 	margin: 0px;
 }
 
-ul li:before{
+ul li.terminal:before{
 	content: 'alexpelan.com:> ';
 	margin: 0;
 }
@@ -58,4 +57,13 @@ a{
 
 .hashtag_or_reply{
 	color: #C23621;
+}
+
+.screenshot{
+	float: left;
+	clear: both;
+}
+
+li.project_display{
+	overflow:auto;
 }

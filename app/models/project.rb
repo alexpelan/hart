@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-	attr_accessible :name, :watchers_count, :stargazers_count, :project_url, :repo_url, :language, :description, :extra_display_information
+	attr_accessible :name, :watchers_count, :stargazers_count, :project_url, :repo_url, :language, :description, :screenshot_url, :blog_post_url
 
 	validates :name, presence: true
 	validates :watchers_count, presence: true
@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
 		self.repo_url = repo.html_url
 		self.language = repo.language
 		self.description = repo.description
-		self.extra_display_information = nil
+		self.screenshot_url = nil
 	end
 
 end

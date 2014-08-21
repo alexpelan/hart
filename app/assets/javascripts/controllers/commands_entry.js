@@ -48,6 +48,7 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 					});
 				return;
 			}
+
 		},
 		 
 

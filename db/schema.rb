@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140813061638) do
+ActiveRecord::Schema.define(:version => 20140819224839) do
 
   create_table "commands", :force => true do |t|
     t.string   "input"
@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(:version => 20140813061638) do
     t.string   "repo_url"
     t.string   "language"
     t.string   "description"
-    t.text     "extra_display_information"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "screenshot_url"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "blog_post_url"
   end
 
 end

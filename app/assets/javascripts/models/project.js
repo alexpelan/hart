@@ -5,4 +5,5 @@ App.Project = DS.Model.extend({
 	repo_url: DS.attr('string'),
 	language: DS.attr('string'),
 	screenshot_url: DS.attr('string'),
+	blog_post_url: DS.attr('string'),
 })

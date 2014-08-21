@@ -14,17 +14,19 @@ class GithubHelper
 		#Take only the attributes that we're interested in, as well as calculated information
 		hart_project = Project.new
 		hart_project.populate_attributes(hart)
-		#TODO: add video/screenshot
+		hart_project.screenshot_url = "http://i.imgur.com/v0XSqAD.jpg"
+		hart_project.blog_post_url = "about:blank" #TODO: write this post and link it up here
+
 
 		lujack_project = Project.new
 		lujack_project.populate_attributes(lujack)
-		#TODO: add video/screenshot
-		
+		lujack_project.screenshot_url = "http://i.imgur.com/v0XSqAD.jpg"
+		lujack_project.blog_post_url = "http://alexpelan.tumblr.com/post/89700507255/my-favorite-tweeters"
 
 		bertelli_project = Project.new
-		bertelli_project.populate_attributes(hart)
-		#TODO: add video/screenshot
-	
+		bertelli_project.populate_attributes(bertelli)
+		bertelli_project.screenshot_url = "http://i.imgur.com/v0XSqAD.jpg";	
+		bertelli_project.blog_post_url = "http://alexpelan.tumblr.com/post/63319011149/i-made-a-thing-bertelli-edition"
 
 		if hart_project.valid? and lujack_project.valid? and bertelli_project.valid?
 			return [hart_project, lujack_project, bertelli_project]

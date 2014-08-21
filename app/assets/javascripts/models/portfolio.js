@@ -16,10 +16,11 @@ App.Portfolio = DS.Model.extend({
 			var name = project.name;
 			var description = project.description;
 			var repo_url = project.repo_url;
-			var project_url = project.project_url
+			var project_url = project.project_url;
 			var language = project.language;
-			
-			var project_for_store = this.store.createRecord("project", { name: name, description: description, repo_url: repo_url, project_url: project_url, language: language});
+			var screenshot_url = project.screenshot_url;
+			var blog_post_url = project.blog_post_url;
+			var project_for_store = this.store.createRecord("project", { name: name, description: description, repo_url: repo_url, project_url: project_url, language: language, screenshot_url: screenshot_url, blog_post_url: blog_post_url});
 			this.get("projects").addObject(project_for_store);
 			project_for_store.save();
 		}
