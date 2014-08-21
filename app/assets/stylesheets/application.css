@@ -55,8 +55,16 @@ a{
 	color: #7EC0EE;
 }
 
-.hashtag_or_reply{
+.red_text{
 	color: #C23621;
+}
+
+.yellow_text{
+	color: #ADAD27;
+}
+
+.white_text{
+	color: #FFFFFF;
 }
 
 .screenshot{

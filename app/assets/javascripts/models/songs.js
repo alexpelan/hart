@@ -14,12 +14,15 @@ App.Songs = DS.Model.extend({
 		songs = response["alex_pelan"]; //rails sillyness since that's the name of my controller
 		var i;
 		for (i=0; i < songs.length; i++){
-			var nowplaying = songs[i].nowplaying;
+			var is_now_playing = songs[i].nowplaying;
+			if(is_now_playing === "true"){
+				is_now_playing = true;
+			}
 			var title = songs[i].name;
 			var artist_name = songs[i].artist.content;
 			var album_name = songs[i].album.content;
 			var url = songs[i].url;
-			var song = this.store.createRecord("song", {nowplaying: nowplaying, title: title, artist_name: artist_name, album_name: album_name, url: url});
+			var song = this.store.createRecord("song", {is_now_playing: is_now_playing, title: title, artist_name: artist_name, album_name: album_name, url: url});
 			this.get("song_records").addObject(song);
 			song.save();
 		}

@@ -61,11 +61,11 @@ App.Tweets = DS.Model.extend({
 		for(i = 0; i < words.length; i++){
 			if( words[i][0] === "#"){
 				var hashtag_without_pound = words[i].slice(1);
-				words[i] = '<a class = "hashtag_or_reply" href="http://www.twitter.com/hashtag/' + hashtag_without_pound + '">' + words[i] + '</a>';
+				words[i] = '<a class = "red_text" href="http://www.twitter.com/hashtag/' + hashtag_without_pound + '">' + words[i] + '</a>';
 			}
 			else if(words[i][0] === "@"){
 				var username = words[i].slice(1);
-				words[i] = '<a class = "hashtag_or_reply" href="http://www.twitter.com/' + username + '">' + words[i] + '</a>';
+				words[i] = '<a class = "red_text" href="http://www.twitter.com/' + username + '">' + words[i] + '</a>';
 			}
 
 			parsed_text = parsed_text + words[i] + " ";
