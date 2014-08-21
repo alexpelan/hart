@@ -1,0 +1,3 @@
+each beer in command.beers.beer_records
+	br
+	beer.beer_name

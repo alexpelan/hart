@@ -3,6 +3,7 @@ App.CommandOutputView = Ember.View.extend({
 	classNames: ['terminal'],
 	templateName: function(){
 		var contentType = this.get("content.type");
+		//TODO: consider refactoring so that we just uppercase first letter and append that to CommandOutput
 		if (contentType === "tweets"){
 			return "CommandOutputTweets";
 		}
@@ -11,6 +12,9 @@ App.CommandOutputView = Ember.View.extend({
 		}
 		else if (contentType === "songs"){
 			return "CommandOutputSongs";
+		}
+		else if (contentType === "beers"){
+			return "CommandOutputBeers";
 		}
 	}.property(),
 

@@ -42,6 +42,17 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 						command.save();
 					});
 			}
+			else if (input === "beers"){
+				var number_of_beers = this.parse_number_of_objects_argument(tokens, 10);
+				
+				var beers = this.store.createRecord("beers", {});
+				var command = this.store.createRecord("command", {input: userInput, type: "beers", beers: beers});
+				beers.get_beers_from_untappd(number_of_beers).then(
+					function(response){
+						beers.populate_attributes(response);
+						command.save();
+					});
+			}
 			else if (input === "clear"){
 				this.store.find("command").then(function(command){
 					command.content.forEach(function(cmd){

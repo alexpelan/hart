@@ -10,7 +10,7 @@ class UntappdHelper
 
 	def get_recently_drank(count)
 		if count.nil?
-			count = 25
+			count = 10
 		end
 		recently_drank = Untappd::User.feed("alexpelan", :limit => count)
 		return recently_drank
