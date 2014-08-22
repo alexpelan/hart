@@ -27,4 +27,75 @@ App.Beers = DS.Model.extend({
 
 		this.save();
 	},
+
+	parse_date_string: function(date_string){
+		var months = {
+			'Jan': 1,
+			'Feb': 2,
+			'Mar': 3,
+			'Apr': 4,
+			'May': 5,
+			'Jun': 6,
+			'Jul': 7,
+			'Aug': 8,
+			'Sep': 9,
+			'Oct': 10,
+			'Nov': 11,
+			'Dec': 12
+		};
+		parsed_date = {};
+		date_tokens = date_string.split(" ");
+		parsed_date["day"] = date_tokens[1];
+		parsed_date["month"] = months[date_tokens[2]];
+		parsed_date["year"] = date_tokens[3];
+		time_tokens = date_tokens[4].split(":");
+		parsed_date["hour"] = time_tokens[0];
+		parsed_date["minute"] = time_tokens[1];
+		parsed_date["second"] = time_tokens[2];
+		return parsed_date;
+	},
+
+	calculate_time_difference_in_hours: function(later_time, earlier_time){
+		var difference_in_ms = later_time - earlier_time;
+		var difference_in_s = difference_in_ms / 1000;
+		var difference_in_m = difference_in_s / 60;
+		var difference_in_h = difference_in_m / 60;
+		return difference_in_h;
+	},
+
+	//Formula taken from http://www.teamdui.com/bac-widmarks-formula/ - nothing like finding yourself 
+	//on a website like "team dui!"
+	bac: function(){
+		var bac = 0.0;
+		var self = this;
+		this.get("beer_records").forEach(
+			function(beer){
+				//first, calculate the "number of drinks" this beer is
+				var beer_abv = beer.get("beer_abv");
+				//There's no way to differentiate the volume based on untappd data,
+				//So we'll overestimate and assume 16 oz
+				var number_of_drinks = (beer_abv / 100) * 16; //TODO this line and the next couple: magic numbers!
+				var abv_from_drink = number_of_drinks * 5.14 / 170 * .73;
+				var time_of_drink = beer.get("timestamp");
+				var now_utc_time = new Date().getTime();
+				var parsed_date = self.parse_date_string(time_of_drink);
+				var drink_utc_time = new Date(Date.UTC(parsed_date["year"], parsed_date["month"]-1, parsed_date["day"], parsed_date["hour"], parsed_date["minute"], parsed_date["second"]));
+				var difference_in_time_in_hours = self.calculate_time_difference_in_hours(now_utc_time, drink_utc_time);
+				//we can exit if we exceed 12 hours because the API gives us them in reverse chronological
+				if (difference_in_time_in_hours > 12){
+					return bac;
+				}
+				else{
+					var abv_absorbed_over_time = .015 * difference_in_time_in_hours;
+					var net_abv_from_beer = abv_from_drink - abv_absorbed_over_time;
+					if( net_abv_from_beer < 0 ){
+						net_abv_from_beer = 0;
+					}
+					bac = bac + net_abv_from_beer;
+				}
+			});
+		return bac;
+	}.property("beer_records.@each"),
+
+	
 });
