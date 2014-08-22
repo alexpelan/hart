@@ -34,8 +34,38 @@ App.Beers = DS.Model.extend({
 	//Let's just match the twitter API: <day of week> <month> <day of month> <24 hour time, no colons>
 	massage_timestamp_for_display: function(timestamp){
 		var parsed_date = this.parse_date_string(timestamp);
+		parsed_date = this.adjust_for_user_timezone(parsed_date);	
+
 		var massaged_date = parsed_date["day_of_week"] + " " + parsed_date["month"] + " " + parsed_date["day"] + " " + parsed_date["hour"] + parsed_date["minute"];
 		return massaged_date;
+	},
+
+	adjust_for_user_timezone: function(parsed_date){
+		var hour = parseInt(parsed_date["hour"]);
+		var day = parseInt(parsed_date["day"]);
+		var unused_date = new Date();
+		var timezone_offset_in_hours = - (unused_date.getTimezoneOffset() / 60); //negative because this returns positive for areas behind GMT, which is weird to me
+		hour = hour + timezone_offset_in_hours;
+
+		if(hour > 24){
+			hour = hour % 24;
+			day = day + 1;
+		}
+		else if(hour < 0){
+			hour = 24 + hour;
+			day = day - 1;
+		}
+		
+		parsed_date["hour"] = this.prepend_leading_zero(hour);
+		parsed_date["day"] = this.prepend_leading_zero(day);
+		return parsed_date;
+	},
+
+	prepend_leading_zero: function(date_value){
+		if(date_value < 10){
+			date_value = "0" + date_value;
+		}	
+		return date_value
 	},
 
 	convert_month_name_to_month_number: function(month_name){

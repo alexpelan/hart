@@ -7,6 +7,6 @@ each beer in command.beers.beer_records
 	|  - {{beer.beer_style}} from 
 	a.red_text href=beer.brewery_url
 		beer.brewery_name
-	|in {{beer.brewery_location}}
+	|  in {{beer.brewery_location}}
 br
 span My BAC is currently about {{command.beers.bac}}. If this seems high, it's probably just a code bug :).
