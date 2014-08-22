@@ -13,6 +13,7 @@ App.Beers = DS.Model.extend({
 		var i;
 		for(i=0; i < beers.length; i++){
 			var timestamp = beers[i].created_at;
+			var display_time = this.massage_timestamp_for_display(timestamp);
 			var beer_name = beers[i].beer.beer_name;
 			var beer_style = beers[i].beer.beer_style;
 			var beer_abv = beers[i].beer.beer_abv;
@@ -20,15 +21,24 @@ App.Beers = DS.Model.extend({
 			var brewery_name = beers[i].brewery.brewery_name;
 			var brewery_location = beers[i].brewery.location.brewery_city + ", " + beers[i].brewery.location.brewery_state;
 			var brewery_url = beers[i].brewery.contact.url;
-			var beer = this.store.createRecord("beer", {timestamp: timestamp, beer_name: beer_name, beer_style: beer_style, beer_abv: beer_abv, beer_image_url: beer_image_url, brewery_name: brewery_name, brewery_location: brewery_location, brewery_url: brewery_url});
+			var beer = this.store.createRecord("beer", {timestamp: timestamp, beer_name: beer_name, beer_style: beer_style, beer_abv: beer_abv, beer_image_url: beer_image_url, brewery_name: brewery_name, brewery_location: brewery_location, brewery_url: brewery_url, display_time: display_time});
 			this.get("beer_records").addObject(beer);
 			beer.save();
 		}
 
 		this.save();
 	},
+		
+	//Date manipulation fun! lots of it.
 
-	parse_date_string: function(date_string){
+	//Let's just match the twitter API: <day of week> <month> <day of month> <24 hour time, no colons>
+	massage_timestamp_for_display: function(timestamp){
+		var parsed_date = this.parse_date_string(timestamp);
+		var massaged_date = parsed_date["day_of_week"] + " " + parsed_date["month"] + " " + parsed_date["day"] + " " + parsed_date["hour"] + parsed_date["minute"];
+		return massaged_date;
+	},
+
+	convert_month_name_to_month_number: function(month_name){
 		var months = {
 			'Jan': 1,
 			'Feb': 2,
@@ -43,10 +53,15 @@ App.Beers = DS.Model.extend({
 			'Nov': 11,
 			'Dec': 12
 		};
+		return months[month_name];
+	},
+
+	parse_date_string: function(date_string){
 		parsed_date = {};
 		date_tokens = date_string.split(" ");
+		parsed_date["day_of_week"] = date_tokens[0].slice(0,3);
 		parsed_date["day"] = date_tokens[1];
-		parsed_date["month"] = months[date_tokens[2]];
+		parsed_date["month"] = date_tokens[2];
 		parsed_date["year"] = date_tokens[3];
 		time_tokens = date_tokens[4].split(":");
 		parsed_date["hour"] = time_tokens[0];
@@ -79,6 +94,7 @@ App.Beers = DS.Model.extend({
 				var time_of_drink = beer.get("timestamp");
 				var now_utc_time = new Date().getTime();
 				var parsed_date = self.parse_date_string(time_of_drink);
+				parsed_date["month"] = self.convert_month_name_to_month_number(parsed_date["month"]);
 				var drink_utc_time = new Date(Date.UTC(parsed_date["year"], parsed_date["month"]-1, parsed_date["day"], parsed_date["hour"], parsed_date["minute"], parsed_date["second"]));
 				var difference_in_time_in_hours = self.calculate_time_difference_in_hours(now_utc_time, drink_utc_time);
 				//we can exit if we exceed 12 hours because the API gives us them in reverse chronological

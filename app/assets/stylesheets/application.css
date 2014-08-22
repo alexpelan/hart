@@ -67,11 +67,7 @@ a{
 	color: #FFFFFF;
 }
 
-.screenshot{
-	float: left;
-	clear: both;
+.blue_text{
+	color: #7EC0EE;
 }
 
-li.project_display{
-	overflow:auto;
-}
