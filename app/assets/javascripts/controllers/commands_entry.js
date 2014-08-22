@@ -53,6 +53,15 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 						command.save();
 					});
 			}
+			else if (input === "books"){
+				var books = this.store.createRecord("books", {});
+				var command = this.store.createRecord("command",{input: userInput, type: "books", books: books});
+				books.get_books_from_goodreads().then(
+					function(response){
+						books.populate_attributes(response);
+						command.save();
+					});
+			}
 			else if (input === "clear"){
 				this.store.find("command").then(function(command){
 					command.content.forEach(function(cmd){

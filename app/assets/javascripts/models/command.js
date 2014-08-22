@@ -7,7 +7,7 @@ App.Command = DS.Model.extend({
 	portfolio: DS.belongsTo('portfolio'),
 	songs: DS.belongsTo('songs'),
 	beers: DS.belongsTo('beers'),
-	//books: DS.belongsTo('books'),
+	books: DS.belongsTo('books'),
 });
 
 App.Command.FIXTURES = [];

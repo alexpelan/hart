@@ -1,0 +1,2 @@
+each book in command.books.book_records
+	book.title
