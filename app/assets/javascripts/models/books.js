@@ -14,15 +14,8 @@ App.Books = DS.Model.extend({
 			var title = book_json.title;
 			var url = book_json.link;
 			var image_url = book_json.image_url;
-			var authors = book_json.authors;
-			var j;
-			var author_string;
-			var delimiter = "";
-			for(j = 0; j < authors.length; j++){
-				author_string = author_string + delimiter + authors[j].author.name;
-
-			}
-			var book = this.store.createRecord("book", {title: title, url: url, image_url: image_url, author: author_string});
+			var author = book_json.authors.author.name //okay with the primary author for now
+			var book = this.store.createRecord("book", {title: title, url: url, image_url: image_url, author: author});
 			this.get("book_records").addObject(book);
 			book.save();
 		}
