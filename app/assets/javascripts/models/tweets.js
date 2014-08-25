@@ -45,7 +45,7 @@ App.Tweets = DS.Model.extend({
 		var i;
 		var parsed_text = "";
 		for(i = 0; i < words.length; i++){
-			if( words[i].search("http://") !== -1){
+			if( words[i].search("http://") !== -1 || words[i].search("https://") !== -1){
 				words[i] = '<a href="'+ words[i] + '">' + words[i] + '</a>';
 			}
 			parsed_text = parsed_text + words[i] + " ";

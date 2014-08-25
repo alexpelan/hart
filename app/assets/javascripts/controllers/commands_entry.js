@@ -4,6 +4,7 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 		
 		respondToCommand: function(){
 			var userInput = this.get("command");
+			this.set("command",""); //clear out field in UI
 			var tokens = userInput.split(" ");
 			input = tokens[0].toLowerCase();
 			var output;
@@ -29,7 +30,6 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 						tweets.link_to_command(command);
 						tweets.populate_attributes(response);
 						command.save();
-					});
 			}
 			else if (input === "music"){
 				var number_of_songs = this.parse_number_of_objects_argument(tokens, 10);
