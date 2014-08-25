@@ -13,18 +13,18 @@
  */
 body{
 	background-color: #191919;
+
 }
 
 .terminal_styling{
-	font-family: "Andale Mono";
 	font-size: 12pt;
 	color: #00F94F;
+        font-family: "Andale Mono";	
 }
-/*.fixed_footer{
-	position: fixed;
-	width:100%;
-	bottom: 0px;
-}*/
+
+.terminal_spacing{
+	padding-top: 1.5em;
+}
 
 input[type="submit"]{
 	background-color: #191919;
@@ -70,4 +70,25 @@ a{
 .blue_text{
 	color: #7EC0EE;
 }
+
+.title_bar{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	background: #CFCFCF; /* Cross browser support */
+	background: linear-gradient(#CFCFCF, #A7A7A7);
+	color: #000000;
+	font-family: "Lucida Grande";
+	font-size: 12pt;
+	text-align: center;
+}
+
+.pull_left{
+	text-align: left;
+	float: left;
+}
+
 

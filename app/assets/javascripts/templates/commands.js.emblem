@@ -1,5 +1,11 @@
-.terminal_styling
-	h1 Terminal 
+.title_bar
+	.pull_left
+		%svg height="20" width="100"
+			%circle cx="10" cy="10" r="7.5" fill="red"
+			%circle cx="35" cy="10" r="7.5" fill="yellow"
+			%circle cx="60" cy="10" r="7.5" fill="green"
+	| terminal - www.alexpelan.com
+.terminal_styling.terminal_spacing
 	ul
 		each command in controller
 			li.terminal= command.input
