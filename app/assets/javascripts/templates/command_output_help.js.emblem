@@ -1,0 +1,37 @@
+if command.is_error
+	span.red_text That wasn't a valid command.
+	br
+span Here are the different commands available (Optional Parameters):
+br
+
+span.white_text about
+span  - Type this to see my biography and resume.
+br
+
+span.white_text beers (number of beers)
+span  - Type this to see what beers I've been drinking lately. Default: 10 beers
+br
+
+span.white_text books
+span  - Type this to see what I'm currently reading.
+br
+
+span.white_text clear
+span  - Type this to clear the screen.
+br
+
+span.white_text music (number of songs)
+span  - Type this to see what songs I've been listening to. Default: 10 songs
+br
+
+span.white_text portfolio
+span  - Type this to see some software projects I've created.
+br
+
+span.white_text tweets (number of tweets)
+span  - Type this to see my recent tweets. Default: 5 tweets
+br
+
+span.white_text help
+span  - Type this to see this message again.
+br
