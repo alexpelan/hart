@@ -3,6 +3,10 @@ App.Tweets = DS.Model.extend({
 	command: DS.belongsTo("command"),
 	tweet_records: DS.hasMany("tweet"),
 	
+	are_tweets_populated: function(){
+		return (this.get("tweet_records.length") > 0)
+	}.property("tweet_records.length"),
+
 	get_tweets_from_server: function(number_of_tweets){
 		var number_of_tweets_string = "?count=" + number_of_tweets;
 		var request_url = "http://localhost:3000/api/v1/tweets.json" + number_of_tweets_string; 

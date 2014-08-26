@@ -1,7 +1,11 @@
-span The last {{command.tweets.tweet_records.length}} tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>: <br/>
-each tweet in command.tweets.tweet_records
-	a href=tweet.tweet_url 
-		tweet.timestamp
-	| : 
-	== tweet.text
-	br
+if command.tweets.are_tweets_populated
+	span The last {{command.tweets.tweet_records.length}} tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>: <br/>
+	each tweet in command.tweets.tweet_records
+		a href=tweet.tweet_url 
+			tweet.timestamp
+		| : 
+		== tweet.text
+		br
+else
+	span Loading tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>...
+

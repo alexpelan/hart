@@ -1,8 +1,11 @@
-| Here's what I'm currently reading on <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>:
-each book in command.books.book_records
-	h3.white_text
-		a.white_text href=book.url
-			book.title
-		|  by  
-		book.author
-	img src=book.image_url
+if command.books.are_books_populated
+	| Here's what I'm currently reading on <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>:
+	each book in command.books.book_records
+		h3.white_text
+			a.white_text href=book.url
+				book.title
+			|  by  
+			book.author
+		img src=book.image_url
+else
+	span Loading books from <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>...

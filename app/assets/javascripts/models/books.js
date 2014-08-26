@@ -2,6 +2,10 @@ App.Books = DS.Model.extend({
 	book_records: DS.hasMany("book"),
 	command: DS.belongsTo("command"),
 
+	are_books_populated: function(){
+		return (this.get("book_records.length") > 0);
+	}.property("book_records.length"),
+
 	get_books_from_goodreads: function(){
 		return $.getJSON("http://localhost:3000/api/v1/books.json");
 	},

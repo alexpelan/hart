@@ -1,11 +1,13 @@
-span This is what I've been listening to lately, according to <a href="http://www.last.fm/user/AlexPelan">Last.fm:</a>
-each song in command.songs.song_records
-	br
-	span.red_text = song.artist_name
-	|  - 
-	a.yellow_text href=song.url
-		 = song.title
-	|  from the album {{song.album_name}}
-	if song.is_now_playing
-		span.white_text  (&#9835;Listening right now&#9835;)
-	
+if command.songs.are_songs_populated
+	span This is what I've been listening to lately, according to <a href="http://www.last.fm/user/AlexPelan">Last.fm:</a>
+	each song in command.songs.song_records
+		br
+		span.red_text = song.artist_name
+		|  - 
+		a.yellow_text href=song.url
+			 = song.title
+		|  from the album {{song.album_name}}
+		if song.is_now_playing
+			span.white_text  (&#9835;Listening right now&#9835;)
+else
+	span Loading my listening data from <a href="http://www.last.fm/user/AlexPelan">Last.fm</a>...	

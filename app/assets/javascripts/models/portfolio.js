@@ -2,6 +2,10 @@ App.Portfolio = DS.Model.extend({
 
 	command: DS.belongsTo("command"),
 	projects: DS.hasMany("project"),
+	
+	are_projects_populated: function(){
+		return (this.get("projects.length") > 0);
+	}.property("projects.length"),
 
 	get_projects_from_github: function(){
 		return $.getJSON("http://localhost:3000/api/v1/portfolio.json");

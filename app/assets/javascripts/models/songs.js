@@ -3,6 +3,10 @@ App.Songs = DS.Model.extend({
 	command: DS.belongsTo("command"),
 	song_records: DS.hasMany("song"),
 
+	are_songs_populated: function(){
+		return (this.get("song_records.length") > 0);
+	}.property("song_records.length"),
+
 	//potentially refactor all of the get_X_from_Y functions to a mixin?
 	get_songs_from_lastfm: function(number_of_songs){
 		var number_of_songs_string = "?count=" + number_of_songs;

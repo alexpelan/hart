@@ -1,12 +1,15 @@
-|Here's what I've been drinking on <a href="http://www.untappd.com/user/alexpelan">Untappd</a>
-each beer in command.beers.beer_records
+if command.beers.are_beers_populated
+	|Here's what I've been drinking on <a href="http://www.untappd.com/user/alexpelan">Untappd</a>
+	each beer in command.beers.beer_records
+		br
+		span.blue_text= beer.display_time
+		| : Drank a 
+		span.yellow_text= beer.beer_name
+		|  - {{beer.beer_style}} from 
+		a.red_text href=beer.brewery_url
+			beer.brewery_name
+		|  in {{beer.brewery_location}}
 	br
-	span.blue_text= beer.display_time
-	| : Drank a 
-	span.yellow_text= beer.beer_name
-	|  - {{beer.beer_style}} from 
-	a.red_text href=beer.brewery_url
-		beer.brewery_name
-	|  in {{beer.brewery_location}}
-br
-span My BAC is currently about {{command.beers.bac}}. If this seems high, it's probably just a code bug :).
+	span My BAC is currently about {{command.beers.bac}}. If this seems high, it's probably just a code bug :).
+else
+	span Loading beers from <a href="http://www.untappd.com/user/alexpelan">Untappd</a>...
