@@ -15,7 +15,7 @@
 			%circle cx="40" cy="7.5" r="7.5" fill="url(#yellow_gradient)"
 			%circle cx="65" cy="7.5" r="7.5" fill="url(#green_gradient)"
 	span.correct_for_svg terminal - www.alexpelan.com
-.terminal_styling.terminal_spacing
+.terminal_styling.terminal_spacing#terminal_div
 	ul
 		each command in controller
 			li.terminal= command.input

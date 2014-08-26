@@ -9,4 +9,5 @@ App.CommandOutputView = Ember.View.extend({
 		return "CommandOutput" + contentType;
 	}.property(),
 
+
 })

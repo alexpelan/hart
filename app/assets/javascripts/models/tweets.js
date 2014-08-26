@@ -78,9 +78,5 @@ App.Tweets = DS.Model.extend({
 		return "http://twitter.com/alexpelan/status/" + tweet_id;
 	},
 	
-	link_to_command: function(command){
-		command.set("tweets",this);
-	},
-
 })
 
