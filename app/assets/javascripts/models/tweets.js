@@ -1,4 +1,4 @@
-App.Tweets = DS.Model.extend({
+App.Tweets = DS.Model.extend(App.DateLibrary,{
 
 	command: DS.belongsTo("command"),
 	tweet_records: DS.hasMany("tweet"),
@@ -41,7 +41,14 @@ App.Tweets = DS.Model.extend({
 	//output: <day of week> <month> <day> <24 hr time hh:mm>
 	parse_twitter_date: function(timestamp){
 		var date_tokens = timestamp.split(":");
-		return date_tokens[0] + date_tokens[1];
+		var date_pieced_by_spaces = date_tokens[0].split(" ");
+		var date_for_timezone_adjustment = {};
+		date_for_timezone_adjustment["hour"] = date_pieced_by_spaces[3];
+		date_for_timezone_adjustment["day"] = date_pieced_by_spaces[2];
+		var date_adjusted_for_timezone = this.adjust_for_user_timezone(date_for_timezone_adjustment);
+		date_pieced_by_spaces[2] = date_adjusted_for_timezone["day"]
+		date_pieced_by_spaces[3] = date_adjusted_for_timezone["hour"]
+		return date_pieced_by_spaces[0] + " " + date_pieced_by_spaces[1] + " " + date_pieced_by_spaces[2] + " " + date_pieced_by_spaces[3] + date_tokens[1];
 	},
 
 	parse_links: function(text){
