@@ -38,7 +38,7 @@ App.Tweets = DS.Model.extend(App.DateLibrary,{
 	},
 
 	//input: <day of week> <month> <day> <24 hr time hh:mm::ss> <timezone?> <year>
-	//output: <day of week> <month> <day> <24 hr time hh:mm>
+	//output: <day of week> <month> <day> <24 hr time hhmm>
 	parse_twitter_date: function(timestamp){
 		var date_tokens = timestamp.split(":");
 		var date_pieced_by_spaces = date_tokens[0].split(" ");
@@ -54,12 +54,14 @@ App.Tweets = DS.Model.extend(App.DateLibrary,{
 	parse_links: function(text){
 		var words = text.split(" ");
 		var i;
+		var delimiter = "";
 		var parsed_text = "";
 		for(i = 0; i < words.length; i++){
 			if( words[i].search("http://") !== -1 || words[i].search("https://") !== -1){
 				words[i] = '<a href="'+ words[i] + '">' + words[i] + '</a>';
 			}
-			parsed_text = parsed_text + words[i] + " ";
+			parsed_text = parsed_text + delimiter + words[i];
+			delimiter = " ";
 		}
 
 		return parsed_text;
@@ -68,6 +70,7 @@ App.Tweets = DS.Model.extend(App.DateLibrary,{
 	parse_hashtags_and_replies: function(text){
 		var words = text.split(" ");
 		var i;
+		var delimiter = "";
 		var parsed_text = "";
 		for(i = 0; i < words.length; i++){
 			if( words[i][0] === "#"){
@@ -79,7 +82,8 @@ App.Tweets = DS.Model.extend(App.DateLibrary,{
 				words[i] = '<a class = "red_text" href="http://www.twitter.com/' + username + '">' + words[i] + '</a>';
 			}
 
-			parsed_text = parsed_text + words[i] + " ";
+			parsed_text = parsed_text + delimiter + words[i];
+			delimiter = " ";
 		}
 
 		return parsed_text;

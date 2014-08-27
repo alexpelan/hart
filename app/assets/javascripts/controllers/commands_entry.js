@@ -28,9 +28,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				var self = this;
 				tweets.get_tweets_from_server(number_of_tweets).then(
 					function(response){
-						tweets.populate_attributes(response);
-						command.save();
-						self.scroll_to_bottom();
+						Ember.run(function(){
+							tweets.populate_attributes(response);
+							command.save();
+							self.scroll_to_bottom();
+						});
 					});
 			}
 			else if (input === "music"){
