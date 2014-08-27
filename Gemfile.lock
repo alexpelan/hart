@@ -150,6 +150,8 @@ GEM
       rack (~> 1.2)
     pg (0.17.1)
     polyglot (0.3.5)
+    qunit-rails (0.0.7)
+      railties
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -252,6 +254,7 @@ DEPENDENCIES
   lastfm
   launchy (~> 2.2.0)
   pg
+  qunit-rails
   rails (= 3.2.11)
   rspec-rails (~> 2.13.0)
   sass-rails (~> 3.2.3)
