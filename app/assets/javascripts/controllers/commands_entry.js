@@ -81,6 +81,10 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 					});
 				return;
 			}
+			else if (input === "about"){
+				var about_command = this.store.createRecord("command", {input: userInput, type: "about"});
+				about_command.save();
+			}
 			else{
 				var is_error = true;
 				if(input === "help"){
