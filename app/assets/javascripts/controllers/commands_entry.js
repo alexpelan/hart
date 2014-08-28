@@ -67,9 +67,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				var self = this;
 				books.get_books_from_goodreads().then(
 					function(response){
-						books.populate_attributes(response);
-						command.save();
-						self.scroll_to_bottom();
+						Ember.run(function(){
+							books.populate_attributes(response);
+							command.save();
+							self.scroll_to_bottom();
+						});
 					});
 			}
 			else if (input === "clear"){
