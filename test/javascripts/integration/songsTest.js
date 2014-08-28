@@ -1,4 +1,4 @@
-module("Tweets", {
+module("Songs", {
 	setup: function(){
 		Ember.run(App, App.advanceReadiness);
 	},
@@ -12,41 +12,41 @@ module("Tweets", {
 	}
 });
 
-test("Tweet responses contain the proper markup", function(){
+test("Song responses contain the proper markup", function(){
 
 	visit("/");
-	fillIn("input#command_input", "tweets");
+	fillIn("input#command_input", "music");
 	click("input.terminal_styling");
 
 	andThen(function(){
 		strictEqual(find("li").length, 2, "Two list elements exist");
-		strictEqual(find("span.tweet").length, 5, "Default number of tweets returned is five.");
-		ok(find("span.tweet > a").length >= 5, "Each tweet has at least one link");
+		ok(find("span.song").length === 10 || find("span.song").length === 11, "Default number of songs returned is ten or eleven, depending on whether a song is currently playing.");
+		ok(find("span.song > a").length === 11 || find("span.song > a").length === 10, "Each song has exactly one link");
 	});
 
 
 });
 
-test("The number of tweets parameter returns that number of tweets", function(){
+test("The number of songs parameter returns that number of songs", function(){
 	
 	visit("/");
-	fillIn("input#command_input", "tweets 50");
+	fillIn("input#command_input", "music 50");
 	click("input.terminal_styling");
 
 	andThen(function(){
-		strictEqual(find("span.tweet").length, 50, "Requesting 50 tweets returns 50 tweets.");
+		ok(find("span.song").length === 50 || find("span.song").length === 51, "Requesting 50 songs returns 50 songs plus an optional now playing song.");
 	});
 
 });
 
-test("Invalid parameters return the default number of tweets", function(){
+test("Invalid parameters return the default number of songs", function(){
 	
 	visit("/");
-	fillIn("input#command_input", "tweets invalid");
+	fillIn("input#command_input", "music invalid");
 	click("input.terminal_styling");
 
 	andThen(function(){
-		strictEqual(find("span.tweet").length, 5);
+		ok(find("span.song").length === 10 || find("span.song").length === 11);
 	});
 
 });

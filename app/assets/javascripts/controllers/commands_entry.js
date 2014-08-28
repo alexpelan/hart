@@ -15,9 +15,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				var self = this;
 				portfolio.get_projects_from_github().then(
 					function(response){
-						portfolio.populate_attributes(response);
-						command.save();
-						self.scroll_to_bottom();
+						Ember.run(function(){
+							portfolio.populate_attributes(response);
+							command.save();
+							self.scroll_to_bottom();
+						});
 					});
 			}
 			else if (input === "tweets"){
@@ -43,9 +45,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				var self = this;
 				songs.get_songs_from_lastfm(number_of_songs).then(
 					function(response){
-						songs.populate_attributes(response);
-						command.save();
-						self.scroll_to_bottom();
+						Ember.run(function(){
+							songs.populate_attributes(response);
+							command.save();
+							self.scroll_to_bottom();
+						});
 					});
 			}
 			else if (input === "beers"){
@@ -56,9 +60,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				var self = this;
 				beers.get_beers_from_untappd(number_of_beers).then(
 					function(response){
-						beers.populate_attributes(response);
-						command.save();
-						self.scroll_to_bottom();
+						Ember.run(function(){
+							beers.populate_attributes(response);
+							command.save();
+							self.scroll_to_bottom();
+						});
 					});
 			}
 			else if (input === "books"){
