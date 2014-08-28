@@ -13,3 +13,7 @@ App.injectTestHelpers();
 function exists(selector){
 	return !!find(selector).length;
 }
+
+function client_timezone_adjustment(){
+	 return -(new Date().getTimezoneOffset() / 60); // because we use the client time, we need to
+}

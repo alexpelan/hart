@@ -63,7 +63,7 @@ test("make_tweet_url properly appends the tweet id", function(){
 test("parse_twitter_date properly adjusts time zone and formats properly for display", function(){
 
 	var date_string = "Mon Aug 15 12:00:00 +0000 2014";
-	var timezone_adjustment = -(new Date().getTimezoneOffset() / 60); // because we use the client time, we need to adjust in our test as well
+	var timezone_adjustment = client_timezone_adjustment();
 	date_string = tweets.parse_twitter_date(date_string);
 	var correct_hour = 12 + timezone_adjustment;
 

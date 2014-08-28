@@ -1,4 +1,4 @@
-App.Beers = DS.Model.extend(App.DateLibrary,{
+App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 	beer_records: DS.hasMany("beer"),
 	command: DS.belongsTo("command"),
 
