@@ -1,4 +1,4 @@
-if command.tweets.are_tweets_populated
+if command.tweets.is_model_populated
 	span The last {{command.tweets.tweet_records.length}} tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>: <br/>
 	each tweet in command.tweets.tweet_records
 		span.tweet

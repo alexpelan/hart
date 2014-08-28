@@ -1,11 +1,12 @@
-App.Tweets = DS.Model.extend(App.DateLibrary,{
+App.Tweets = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 
 	command: DS.belongsTo("command"),
 	tweet_records: DS.hasMany("tweet"),
 	
-	are_tweets_populated: function(){
-		return (this.get("tweet_records.length") > 0)
-	}.property("tweet_records.length"),
+	init: function(){
+		this._super();
+		this.model_name = "tweets";
+	},
 
 	get_tweets_from_server: function(number_of_tweets){
 		var number_of_tweets_string = "?count=" + number_of_tweets;

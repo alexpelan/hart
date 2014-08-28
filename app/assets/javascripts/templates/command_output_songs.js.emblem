@@ -1,4 +1,4 @@
-if command.songs.are_songs_populated
+if command.songs.is_model_populated
 	span This is what I've been listening to lately, according to <a href="http://www.last.fm/user/AlexPelan">Last.fm:</a>
 	each song in command.songs.song_records
 		br

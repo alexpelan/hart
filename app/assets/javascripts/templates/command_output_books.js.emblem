@@ -1,4 +1,4 @@
-if command.books.are_books_populated
+if command.books.is_model_populated
 	| Here's what I'm currently reading on <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>:
 	each book in command.books.book_records
 		h3.white_text

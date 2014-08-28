@@ -1,4 +1,4 @@
-if command.portfolio.are_projects_populated
+if command.portfolio.is_model_populated
 	|Here are some software projects that I've worked on in my spare time:
 	each project in command.portfolio.projects
 		li.project_display

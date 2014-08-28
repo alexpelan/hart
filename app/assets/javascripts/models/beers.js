@@ -2,9 +2,10 @@ App.Beers = DS.Model.extend(App.DateLibrary,{
 	beer_records: DS.hasMany("beer"),
 	command: DS.belongsTo("command"),
 
-	are_beers_populated: function(){
-		return (this.get("beer_records.length") > 0);
-	}.property("beer_records.length"),
+	init: function(){
+		this._super();
+		this.model_name = "beers";
+	},
 
 	get_beers_from_untappd: function(number_of_beers){
 		var number_of_beers_string = "?count=" + number_of_beers;

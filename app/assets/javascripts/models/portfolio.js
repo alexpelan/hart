@@ -1,11 +1,12 @@
-App.Portfolio = DS.Model.extend({
+App.Portfolio = DS.Model.extend(App.SharedModelLogic,{
 
 	command: DS.belongsTo("command"),
 	projects: DS.hasMany("project"),
 	
-	are_projects_populated: function(){
-		return (this.get("projects.length") > 0);
-	}.property("projects.length"),
+	init: function(){
+		this._super();
+		this.model_name = "portfolio";
+	},	
 
 	get_projects_from_github: function(){
 		return $.getJSON("http://localhost:3000/api/v1/portfolio.json");

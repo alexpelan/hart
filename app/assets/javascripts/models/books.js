@@ -1,10 +1,11 @@
-App.Books = DS.Model.extend({
+App.Books = DS.Model.extend(App.SharedModelLogic,{
 	book_records: DS.hasMany("book"),
 	command: DS.belongsTo("command"),
 
-	are_books_populated: function(){
-		return (this.get("book_records.length") > 0);
-	}.property("book_records.length"),
+	init: function(){
+		this._super();
+		this.model_name = "books";
+	},	
 
 	get_books_from_goodreads: function(){
 		return $.getJSON("http://localhost:3000/api/v1/books.json");

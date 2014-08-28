@@ -1,11 +1,12 @@
-App.Songs = DS.Model.extend({
+App.Songs = DS.Model.extend(App.SharedModelLogic, {
 
 	command: DS.belongsTo("command"),
 	song_records: DS.hasMany("song"),
 
-	are_songs_populated: function(){
-		return (this.get("song_records.length") > 0);
-	}.property("song_records.length"),
+	init: function(){
+		this._super();
+		this.model_name = "songs";
+	},
 
 	//potentially refactor all of the get_X_from_Y functions to a mixin?
 	get_songs_from_lastfm: function(number_of_songs){

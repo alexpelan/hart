@@ -12,18 +12,18 @@ module("Unit Test: Tweets", {
 		
 });
 
-test("are_tweets_populated property tells whether there are tweets or not", function(){
+test("is_model_populated property tells whether there are tweets or not", function(){
 
 	
 	Ember.run(function(){
 		tweet = store.createRecord("tweet", {});
-		strictEqual(tweets.get("are_tweets_populated"), false, "Are_tweets_populated is not true for tweets record without any associated tweet records");
+		strictEqual(tweets.get("is_model_populated"), false, "Is_model_populated is not true for tweets record without any associated tweet records");
 	});
 
 
 	Ember.run(function(){	
 		tweets.get("tweet_records").addObject(tweet);
-		strictEqual(tweets.get("are_tweets_populated"), true, "Are_tweets_populated is true once there are associated tweet records");
+		strictEqual(tweets.get("is_model_populated"), true, "Is_model_populated is true once there are associated tweet records");
 	});
 
 });

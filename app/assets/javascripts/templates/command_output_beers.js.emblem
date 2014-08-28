@@ -1,4 +1,4 @@
-if command.beers.are_beers_populated
+if command.beers.is_model_populated
 	|Here's what I've been drinking on <a href="http://www.untappd.com/user/alexpelan">Untappd</a>
 	each beer in command.beers.beer_records
 		br
