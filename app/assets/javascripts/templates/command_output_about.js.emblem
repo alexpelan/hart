@@ -1,7 +1,7 @@
 br
 /picture will go here eventually
 
-h2 Biography
+h2.about_header Biography
 
 p
 	|I'm Alex Pelan, a full stack software developer in NYC. Let's start at the end and work our way backwards, shall we?
@@ -15,17 +15,17 @@ p
 p
 	|My interests outside of programming are playing and listening to music, improv comedy, watching sports (college football in particular), and reading. Those interests tend to drive the sorts of side projects that I work on.
 
-h2 Resume
+h2.about_header Resume
 
 p 
 	|My most up to date resume is my <a href="//www.linkedin.com/profile/view?id=47537022">LinkedIn Profile</a> 
 
-h2 Writing
+h2.about_header Writing
 
 p
 	|I keep a <a href="http://alexpelan.tumblr.com">blog</a> where I post things I learn while working on side project.
 
-h2 Contact
+h2.about_header Contact
 
 p
 	|I'm always interested in meeting new people. Whether you're interested in collaborating or just meeting up for a coffee or a beer, feel free to shoot me an email at alexpelan@gmail.com.

@@ -45,3 +45,42 @@ test("calculate_time_difference_in_hours returns the correct difference in hours
 	strictEqual(result, 1);
 });
 
+test("bac returns the blood alcohol content of Alex", function(){
+
+	var beer;
+	var now_in_utc = new Date();
+	var day = now_in_utc.getUTCDate();
+	var month = now_in_utc.getUTCMonth();
+	var hours = now_in_utc.getUTCHours();
+	var minutes = now_in_utc.getUTCMinutes();
+
+	//we're faking the day of week and year since they just get thrown out.
+	var month_number_to_name = {
+		0: "Jan",
+		1: "Feb",
+		2: "Mar",
+		3: "Apr",
+		4: "May",
+		5: "Jun",
+		6: "Jul",
+		7: "Aug",
+		8: "Sep",
+		9: "Oct",
+		10: "Nov",
+		11: "Dec",
+	};	
+
+	var month = month_number_to_name[month];
+	var timestamp = "Fri, " + day + " " + month + " 2014 " + hours + ":" + minutes + ":00";
+
+	Ember.run(function(){
+		beer = store.createRecord("beer", {beer_abv: "4.5", timestamp: timestamp});
+		beers.get("beer_records").addObject(beer);
+	});
+
+	var bac = beers.get("bac");
+	strictEqual(bac, 0.02);
+	
+
+});
+

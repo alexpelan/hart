@@ -99,6 +99,8 @@ App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 					bac = bac + net_abv_from_beer;
 				}
 			});
+		//rounds to two deciml points
+		bac = Math.round(bac * 100) / 100;
 		return bac;
 	}.property("beer_records.@each"),
 
