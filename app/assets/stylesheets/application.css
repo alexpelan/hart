@@ -35,7 +35,7 @@ input[type="submit"]{
 
 input[type="text"]{
 	background-color: #191919;
-	border-color: #191919;
+	border: 0px solid;
 }
 
 ul{
