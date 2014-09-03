@@ -18,7 +18,6 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 						Ember.run(function(){
 							portfolio.populate_attributes(response);
 							command.save();
-							self.scroll_to_bottom();
 						});
 					});
 			}
@@ -94,6 +93,7 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			else if (input === "about"){
 				var about_command = this.store.createRecord("command", {input: userInput, type: "about"});
 				about_command.save();
+				this.scroll_to_bottom();
 			}
 			else{
 				var is_error = true;
@@ -102,7 +102,7 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 				}
 				var help_or_error_command = this.store.createRecord("command", {input: userInput, type: "help", is_error: is_error});
 				help_or_error_command.save();
-	
+				this.scroll_to_bottom();
 			}
 
 		},
