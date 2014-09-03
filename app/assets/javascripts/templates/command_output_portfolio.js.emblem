@@ -1,21 +1,29 @@
 if command.portfolio.is_model_populated
 	|Here are some software projects that I've worked on in my spare time:
 	each project in command.portfolio.projects
-		li.project_display
-			/.screenshot
-			/	img.image_border src=project.screenshot_url
+		div.project_display
+			.screenshot
+				a href=project.project_url
+					img.screenshot_img src=project.screenshot_url
 			.project_details
 				h2
 					a href=project.project_url
 						project.name
-				project.description
+				span.white_text= project.description
 				br
-				span Language: {{project.language}}
+				span Primary Language: 
+				span.red_text= project.language
 				br
-				a href=project.repo_url
-					|Github Repo
-				br
-				a href=project.blog_post_url
-					|Blog Post: What I Learned
+				div.icon_container
+					div.github_icon.icon
+						div.mouseover_text
+							p
+								a href=project.repo_url
+									|View code on Github
+					div.tumblr_icon.icon
+						div.mouseover_text
+							p
+								a href=project.blog_post_url
+									|Blog post
 else
 	span Loading my portfolio from <a href="http://www.github.com/alexpelan">Github</a>...
