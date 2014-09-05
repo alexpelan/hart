@@ -1,5 +1,5 @@
 .fixed_footer
-	form
+	form onsubmit="return false" /IE8 fix, pressing enter would refresh the page
 		label alexpelan.com> 	
 		view Ember.TextField value=command elementId="command_input" classNames="terminal_styling command"
-		input class='terminal_styling' type='submit' value='Submit' click='respondToCommand'
+		input type='submit' class='terminal_styling' value='Submit' click='respondToCommand'

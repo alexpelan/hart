@@ -1,6 +1,6 @@
 .title_bar
 	.pull_left
-		img.no_border src="assets/close_buttons.svg"
+		img.no_border src="assets/close_buttons.svg" onerror="this.onerror=null; this.src='assets/close_buttons.png';"
 	span.correct_for_svg terminal - www.alexpelan.com
 .terminal_styling.terminal_spacing#terminal_div
 	span#introduction_message

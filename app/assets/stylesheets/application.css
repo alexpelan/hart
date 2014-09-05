@@ -31,7 +31,7 @@ img{
 .terminal_styling{
 	font-size: 12pt;
 	color: #00F94F;
-        font-family: "Andale Mono";	
+        font-family: "Andale Mono", "Courier New", Courier, monospace;	
 }
 
 .terminal_spacing{
@@ -95,7 +95,7 @@ a{
 	background: #CFCFCF; /* Cross browser support */
 	background: linear-gradient(#CFCFCF, #A7A7A7);
 	color: #000000;
-	font-family: "Lucida Grande";
+	font-family: "Lucida Grande",Lucida,monospace;
 	font-size: 12pt;
 	text-align: center;
 	z-index: 100; /*This is because the opacity of the images messes with the stacking, so hard-code this high*/
