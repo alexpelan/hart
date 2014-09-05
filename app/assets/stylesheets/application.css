@@ -13,7 +13,7 @@
  */
 body{
 	background-color: #191919;
-
+	height: 100%;
 }
 
 h1,h2,h3{
@@ -136,11 +136,6 @@ a{
 	filter: alpha(opacity=40); /* for IE8 and earlier */
 }
 
-.project_details{
-	/*float: left;
-	width: 60%*/;
-}
-
 .icon{
 	width: 100px;
 	height: 100px;
@@ -189,3 +184,6 @@ div.mouseover_text > p > a{
 	color: #00F94F;
 }
 
+.no_border{
+	border: 0px solid black;
+}
