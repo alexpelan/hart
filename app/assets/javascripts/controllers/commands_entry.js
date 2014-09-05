@@ -10,8 +10,8 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			var output;
 			//TODO: factor out the contents of each if statement to subroutine - getting a litle long
 			if (input === "portfolio"){
-				portfolio = this.store.createRecord("portfolio", {});
-				command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
+				var portfolio = this.store.createRecord("portfolio", {});
+				var command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
 				var self = this;
 				portfolio.get_projects_from_github().then(
 					function(response){
@@ -24,8 +24,8 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			else if (input === "tweets"){
 				var number_of_tweets = this.parse_number_of_objects_argument(tokens, 5);
 				
-				tweets = this.store.createRecord("tweets", {});
-				command = this.store.createRecord("command", {input: userInput, type: "tweets", tweets: tweets})
+				var tweets = this.store.createRecord("tweets", {});
+				var command = this.store.createRecord("command", {input: userInput, type: "tweets", tweets: tweets})
 				var self = this;
 				tweets.get_tweets_from_server(number_of_tweets).then(
 					function(response){
