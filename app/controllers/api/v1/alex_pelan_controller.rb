@@ -11,34 +11,55 @@ class Api::V1::AlexPelanController < ApplicationController
 	#hardcoding which projects are shown, but still getting stats from github API
 	def portfolio
 		github = GithubHelper.new
-		repos = github.get_portfolio_information
-		respond_with repos
+		
+		begin
+			repos = github.get_portfolio_information
+			respond_with repos
+		rescue Github::Error::GithubError => e
+			render :json => { :error => e.message}, :status => 442
+		end
 	end
 
 	def tweets
 		count = params[:count]
 		twitter = TwitterHelper.new
-		tweets = twitter.recent_tweets(count)
-		respond_with tweets
+
+		begin
+			tweets = twitter.recent_tweets(count)
+			respond_with tweets
+		rescue Twitter::Error => e
+			render :json => { :error => e.message}, :status => 442
+		end
 	end
 
 	def currently_reading
 		goodreads = GoodreadsHelper.new
-		currently_reading_shelf = goodreads.get_currently_reading
-		respond_with currently_reading_shelf
+
+		begin
+			currently_reading_shelf = goodreads.get_currently_reading
+			respond_with currently_reading_shelf
+		rescue Goodreads::Error => e
+			render :json => { :error => e.message}, :status => 442
+		end
 	end
 
 	def recently_played
 		count = params[:count]
 		lastfm = LastfmHelper.new
-		recently_played_tracks = lastfm.get_recently_played(count)
-		respond_with recently_played_tracks
+
+		begin
+			recently_played_tracks = lastfm.get_recently_played(count)
+			respond_with recently_played_tracks
+		rescue Lastfm::Error => e
+			render :json => { :error => e.message}, :status => 442
+		end	
 	end
 
 	def recently_drank
 		count = params[:count]
 		untappd = UntappdHelper.new
 		recently_drank_beers = untappd.get_recently_drank(count)
+		#No error handling since our gem doesn't have any error handling
 		respond_with recently_drank_beers
 	end
 
