@@ -10,5 +10,8 @@
 
 <%= yield %>
 
+<!-- Google analytics in production only -->
+<%= render :partial=> 'layouts/google_analytics' if Rails.env == 'production' %>
+
 </body>
 </html>
