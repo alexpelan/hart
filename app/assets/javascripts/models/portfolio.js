@@ -9,7 +9,8 @@ App.Portfolio = DS.Model.extend(App.SharedModelLogic,{
 	},	
 
 	get_projects_from_github: function(){
-		return $.getJSON("http://localhost:3000/api/v1/portfolio.json");
+		var request_url = this.get_request_url("portfolio.json");
+		return $.getJSON(request_url);
 	},
 
 	populate_attributes: function(response){

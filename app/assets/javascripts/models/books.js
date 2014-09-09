@@ -8,7 +8,8 @@ App.Books = DS.Model.extend(App.SharedModelLogic,{
 	},	
 
 	get_books_from_goodreads: function(){
-		return $.getJSON("http://localhost:3000/api/v1/books.json");
+		var request_url = this.get_request_url("books.json");
+		return $.getJSON(request_url);
 	},
 
 	populate_attributes: function(response){

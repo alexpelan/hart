@@ -17,8 +17,8 @@ App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 	},
 
 	get_beers_from_untappd: function(number_of_beers){
-		var number_of_beers_string = "?count=" + number_of_beers;
-		var request_url = "http://localhost:3000/api/v1/beers.json" + number_of_beers_string;
+		var number_of_beers_string = "beers.json?count=" + number_of_beers;
+		var request_url = this.get_request_url(number_of_beers_string);
 		return $.getJSON(request_url);
 	},
 

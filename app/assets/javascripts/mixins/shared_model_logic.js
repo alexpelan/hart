@@ -4,7 +4,13 @@ App.SharedModelLogic = Ember.Mixin.create({
 
 	did_api_error_occur: false,
 	error_message: null,
+	API_PREFIX_DEVELOPMENT: "http://localhost:3000/api/v1/",
+	API_PREFIX_PRODUCTION: "http://www.alexpelan.com/api/v1",
 
+	//This mostly exists so we can toggle between with one line of code
+	get_request_url: function(additional_parameters){
+		return this.API_PREFIX_DEVELOPMENT + additional_parameters;
+	},
 
 	handle_api_errors: function(response){
 		var error_message = response.responseJSON["error_message"];

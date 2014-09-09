@@ -9,8 +9,8 @@ App.Tweets = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 	},
 
 	get_tweets_from_server: function(number_of_tweets){
-		var number_of_tweets_string = "?count=" + number_of_tweets;
-		var request_url = "http://localhost:3000/api/v1/tweets.json" + number_of_tweets_string; 
+		var number_of_tweets_string = "tweets.json?count=" + number_of_tweets;
+		var request_url = this.get_request_url( number_of_tweets_string); 
 		return $.getJSON(request_url);
 	},
 

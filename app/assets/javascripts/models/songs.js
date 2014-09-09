@@ -10,8 +10,8 @@ App.Songs = DS.Model.extend(App.SharedModelLogic, {
 
 	//potentially refactor all of the get_X_from_Y functions to a mixin?
 	get_songs_from_lastfm: function(number_of_songs){
-		var number_of_songs_string = "?count=" + number_of_songs;
-		var request_url = "http://localhost:3000/api/v1/songs.json" + number_of_songs_string;
+		var number_of_songs_string = "songs.json?count=" + number_of_songs;
+		var request_url = this.get_request_url(number_of_songs_string);
 		return $.getJSON(request_url);
 	},	
 
