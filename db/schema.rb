@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140909180336) do
+ActiveRecord::Schema.define(:version => 20140909193852) do
 
   create_table "commands", :force => true do |t|
     t.string   "input"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20140909180336) do
     t.string   "blog_post_url"
   end
 
-  create_table "user_actions", :force => true do |t|
+  create_table "uactions", :force => true do |t|
     t.string   "action"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

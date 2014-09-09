@@ -7,7 +7,7 @@ Hart::Application.routes.draw do
 			get 'books', to: 'alex_pelan#currently_reading', as: 'currently_reading'
 			get 'songs', to: 'alex_pelan#recently_played', as: 'recently_played'
 			get 'beers', to: 'alex_pelan#recently_drank', as: 'recently_drank'
-			post 'user_actions', to: 'user_actions#create', as 'create'
+			resources :uactions
 		end
 	end
 

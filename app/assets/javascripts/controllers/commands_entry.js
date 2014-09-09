@@ -4,10 +4,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 		
 		respondToCommand: function(){
 			var userInput = this.get("command");
+			var user_action = this.store.createRecord("uaction", {action: userInput});
+			user_action.save();
 			this.set("command",""); //clear out field in UI
 			var tokens = userInput.split(" ");
 			input = tokens[0].toLowerCase();
-			var output;
 			//TODO: factor out the contents of each if statement to subroutine - getting a litle long
 			if (input === "portfolio"){
 				var portfolio = this.store.createRecord("portfolio", {});

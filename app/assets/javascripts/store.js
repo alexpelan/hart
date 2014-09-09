@@ -22,8 +22,8 @@ App.ApplicationAdapter = DS.FixtureAdapter.extend({
 
 });
 
-App.UserActionAdapter = DS.RESTAdapter.extend({});
+App.UactionAdapter = DS.RESTAdapter.extend({});
 
 DS.RESTAdapter.reopen({
-	namespace: '/api/v1'
+	namespace: 'api/v1'
 });
