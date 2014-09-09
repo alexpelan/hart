@@ -11,4 +11,7 @@ if command.songs.is_model_populated
 			if song.is_now_playing
 				span.white_text  (&#9835;Listening right now&#9835;)
 else
-	span Loading my listening data from <a href="http://www.last.fm/user/AlexPelan">Last.fm</a>...	
+	if command.songs.did_api_error_occur
+		span There was an error with the Last.fm API: {{command.songs.error_message}}
+	else
+		span Loading my listening data from <a href="http://www.last.fm/user/AlexPelan">Last.fm</a>...	

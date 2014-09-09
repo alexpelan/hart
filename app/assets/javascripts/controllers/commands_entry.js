@@ -12,13 +12,17 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			if (input === "portfolio"){
 				var portfolio = this.store.createRecord("portfolio", {});
 				var command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
-				var self = this;
 				portfolio.get_projects_from_github().then(
 					function(response){
 						Ember.run(function(){
 							portfolio.populate_attributes(response);
 							command.save();
 						});
+					},
+					//Failure
+					function(response){
+						portfolio.handle_api_errors(response);
+						command.save();
 					});
 			}
 			else if (input === "tweets"){
@@ -34,6 +38,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 							command.save();
 							self.scroll_to_bottom();
 						});
+					},
+					//Failure
+					function(response){
+						tweets.handle_api_errors(response);
+						command.save();
 					});
 			}
 			else if (input === "music"){
@@ -49,6 +58,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 							command.save();
 							self.scroll_to_bottom();
 						});
+					},
+					//Failure
+					function(response){
+						songs.handle_api_errors(response);
+						command.save();
 					});
 			}
 			else if (input === "beers"){
@@ -77,6 +91,11 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 							command.save();
 							self.scroll_to_bottom();
 						});
+					},
+					//Failure
+					function(response){
+						books.handle_api_errors(response);
+						command.save();
 					});
 			}
 			else if (input === "clear"){

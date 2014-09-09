@@ -8,5 +8,8 @@ if command.tweets.is_model_populated
 			== tweet.text
 			br
 else
-	span Loading tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>...
+	if command.tweets.did_api_error_occur
+		span There was an error with the Twitter API: {{command.tweets.error_message}}
+	else
+		span Loading tweets from <a href="http://www.twitter.com/alexpelan">@alexpelan</a>...
 

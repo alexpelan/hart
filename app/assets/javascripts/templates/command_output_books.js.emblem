@@ -8,4 +8,7 @@ if command.books.is_model_populated
 			book.author
 		img src=book.image_url
 else
-	span Loading books from <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>...
+	if command.books.did_api_error_occur
+		span There was an error with the Goodreads API: {{command.books.error_message}}
+	else
+		span Loading books from <a href="https://www.goodreads.com/user/show/3090097-alex-pelan">Goodreads</a>...

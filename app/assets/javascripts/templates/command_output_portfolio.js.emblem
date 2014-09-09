@@ -26,4 +26,9 @@ if command.portfolio.is_model_populated
 								a href=project.blog_post_url
 									|Blog post
 else
-	span Loading my portfolio from <a href="http://www.github.com/alexpelan">Github</a>...
+
+	if command.portfolio.did_api_error_occur
+		span There was an error with the Github API:
+		span=  command.portfolio.error_message
+	else
+		span Loading my portfolio from <a href="http://www.github.com/alexpelan">Github</a>...

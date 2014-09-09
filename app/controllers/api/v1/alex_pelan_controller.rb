@@ -16,7 +16,8 @@ class Api::V1::AlexPelanController < ApplicationController
 			repos = github.get_portfolio_information
 			respond_with repos
 		rescue Github::Error::GithubError => e
-			render :json => { :error => e.message}, :status => 442
+			logger.debug("Github error: " + e.message.inspect)
+			render :json => { :error_message => e.message}, :status => 442
 		end
 	end
 
@@ -28,7 +29,8 @@ class Api::V1::AlexPelanController < ApplicationController
 			tweets = twitter.recent_tweets(count)
 			respond_with tweets
 		rescue Twitter::Error => e
-			render :json => { :error => e.message}, :status => 442
+			logger.debug("Twitter error: " + e.message.inspect)
+			render :json => { :error_message => e.message}, :status => 442
 		end
 	end
 
@@ -39,7 +41,8 @@ class Api::V1::AlexPelanController < ApplicationController
 			currently_reading_shelf = goodreads.get_currently_reading
 			respond_with currently_reading_shelf
 		rescue Goodreads::Error => e
-			render :json => { :error => e.message}, :status => 442
+			logger.debug("Goodreads error: " + e.message.inspect)
+			render :json => { :error_message => e.message}, :status => 442
 		end
 	end
 
@@ -51,7 +54,8 @@ class Api::V1::AlexPelanController < ApplicationController
 			recently_played_tracks = lastfm.get_recently_played(count)
 			respond_with recently_played_tracks
 		rescue Lastfm::Error => e
-			render :json => { :error => e.message}, :status => 442
+			logger.debug("Last.fm error: " + e.message.inspect)
+			render :json => { :error_message => e.message}, :status => 442
 		end	
 	end
 

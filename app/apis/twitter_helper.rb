@@ -17,7 +17,6 @@ class TwitterHelper
 		options = {:count => count, :include_rts => true}
 		tweets = @twitter.user_timeline("alexpelan", options)
 		return tweets
-		#TODO: deal with rate limit errors
 	end
 
 end   
