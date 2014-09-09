@@ -4,111 +4,31 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 		
 		respondToCommand: function(){
 			var userInput = this.get("command");
+		
+			//Log what the user typed so we can analyze for usage patterns
 			var user_action = this.store.createRecord("uaction", {action: userInput});
 			user_action.save();
+
 			this.set("command",""); //clear out field in UI
 			var tokens = userInput.split(" ");
 			input = tokens[0].toLowerCase();
-			//TODO: factor out the contents of each if statement to subroutine - getting a litle long
 			if (input === "portfolio"){
-				var portfolio = this.store.createRecord("portfolio", {});
-				var command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
-				portfolio.get_projects_from_github().then(
-					function(response){
-						Ember.run(function(){
-							portfolio.populate_attributes(response);
-							command.save();
-						});
-					},
-					//Failure
-					function(response){
-						portfolio.handle_api_errors(response);
-						command.save();
-					});
+				this.create_portfolio_command(userInput);
 			}
 			else if (input === "tweets"){
-				var number_of_tweets = this.parse_number_of_objects_argument(tokens, 5);
-				
-				var tweets = this.store.createRecord("tweets", {});
-				var command = this.store.createRecord("command", {input: userInput, type: "tweets", tweets: tweets})
-				var self = this;
-				tweets.get_tweets_from_server(number_of_tweets).then(
-					function(response){
-						Ember.run(function(){
-							tweets.populate_attributes(response);
-							command.save();
-							self.scroll_to_bottom();
-						});
-					},
-					//Failure
-					function(response){
-						tweets.handle_api_errors(response);
-						command.save();
-					});
+				this.create_tweets_command(userInput, tokens);
 			}
 			else if (input === "music"){
-				var number_of_songs = this.parse_number_of_objects_argument(tokens, 10);
-			
-				var songs = this.store.createRecord("songs", {});
-				var command = this.store.createRecord("command", {input: userInput, type: "songs", songs: songs});
-				var self = this;
-				songs.get_songs_from_lastfm(number_of_songs).then(
-					function(response){
-						Ember.run(function(){
-							songs.populate_attributes(response);
-							command.save();
-							self.scroll_to_bottom();
-						});
-					},
-					//Failure
-					function(response){
-						songs.handle_api_errors(response);
-						command.save();
-					});
+				this.create_songs_command(userInput, tokens);	
 			}
 			else if (input === "beers"){
-				var number_of_beers = this.parse_number_of_objects_argument(tokens, 10);
-				
-				var beers = this.store.createRecord("beers", {});
-				var command = this.store.createRecord("command", {input: userInput, type: "beers", beers: beers});
-				var self = this;
-				beers.get_beers_from_untappd(number_of_beers).then(
-					function(response){
-						Ember.run(function(){
-							beers.populate_attributes(response);
-							command.save();
-							self.scroll_to_bottom();
-						});
-					});
+				this.create_beers_command(userInput, tokens);	
 			}
 			else if (input === "books"){
-				var books = this.store.createRecord("books", {});
-				var command = this.store.createRecord("command",{input: userInput, type: "books", books: books});
-				var self = this;
-				books.get_books_from_goodreads().then(
-					function(response){
-						Ember.run(function(){
-							books.populate_attributes(response);
-							command.save();
-							self.scroll_to_bottom();
-						});
-					},
-					//Failure
-					function(response){
-						books.handle_api_errors(response);
-						command.save();
-					});
+				this.create_books_command(userInput);
 			}
 			else if (input === "clear"){
-				this.store.find("command").then(function(command){
-					command.content.forEach(function(cmd){
-						Ember.run.once(this, function(){
-							cmd.deleteRecord();
-							cmd.save();
-							});
-						}, this);
-					});
-				return;
+				this.clear_all_commands();				
 			}
 			else if (input === "about"){
 				var about_command = this.store.createRecord("command", {input: userInput, type: "about"});
@@ -130,6 +50,112 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 
 	},
 
+	create_portfolio_command: function(userInput){
+		var portfolio = this.store.createRecord("portfolio", {});
+		var command = this.store.createRecord("command", {input: userInput, type: "portfolio", portfolio: portfolio});	
+		portfolio.get_projects_from_github().then(
+			function(response){
+				Ember.run(function(){
+					portfolio.populate_attributes(response);
+					command.save();
+				});
+			},
+			//Failure
+			function(response){
+				portfolio.handle_api_errors(response);
+				command.save();
+			});
+
+	},
+
+	create_tweets_command: function(userInput, tokens){
+		var number_of_tweets = this.parse_number_of_objects_argument(tokens, 5);
+		var tweets = this.store.createRecord("tweets", {});
+		var command = this.store.createRecord("command", {input: userInput, type: "tweets", tweets: tweets})
+		var self = this;
+		tweets.get_tweets_from_server(number_of_tweets).then(
+			function(response){
+				Ember.run(function(){
+					tweets.populate_attributes(response);
+					command.save();
+					self.scroll_to_bottom();
+				});
+			},
+			//Failure
+			function(response){
+				tweets.handle_api_errors(response);
+				command.save();
+			});
+		},
+
+	create_songs_command: function(userInput, tokens){
+		var number_of_songs = this.parse_number_of_objects_argument(tokens, 10);
+			
+		var songs = this.store.createRecord("songs", {});
+		var command = this.store.createRecord("command", {input: userInput, type: "songs", songs: songs});
+		var self = this;
+		songs.get_songs_from_lastfm(number_of_songs).then(
+			function(response){
+				Ember.run(function(){
+					songs.populate_attributes(response);
+					command.save();
+					self.scroll_to_bottom();
+				});
+			},
+			//Failure
+			function(response){
+				songs.handle_api_errors(response);
+				command.save();
+			});
+	},
+
+	create_beers_command: function(userInput, tokens){
+		var number_of_beers = this.parse_number_of_objects_argument(tokens, 10);
+				
+		var beers = this.store.createRecord("beers", {});
+		var command = this.store.createRecord("command", {input: userInput, type: "beers", beers: beers});
+		var self = this;
+		beers.get_beers_from_untappd(number_of_beers).then(
+			function(response){
+				Ember.run(function(){
+					beers.populate_attributes(response);
+					command.save();
+					self.scroll_to_bottom();
+					});
+			});
+	},
+
+	create_books_command: function(userInput){
+		var books = this.store.createRecord("books", {});
+		var command = this.store.createRecord("command",{input: userInput, type: "books", books: books});
+		var self = this;
+		books.get_books_from_goodreads().then(
+			function(response){
+				Ember.run(function(){
+					books.populate_attributes(response);
+					command.save();
+					self.scroll_to_bottom();
+				});
+			},
+			//Failure
+			function(response){
+				books.handle_api_errors(response);
+				command.save();
+			});
+	},
+
+	clear_all_commands: function(){
+		this.store.find("command").then(function(command){
+			command.content.forEach(function(cmd){
+				Ember.run.once(this, function(){
+					cmd.deleteRecord();
+					cmd.save();
+				});
+			}, this);
+		});
+
+	},
+	
 	parse_number_of_objects_argument: function(tokens, default_value){
 		if (tokens.length > 1){
 			number_of_objects = tokens[1];
@@ -153,5 +179,5 @@ App.CommandsEntryController = Ember.ArrayController.extend({
 			scrollTop: 1000000
 		}, 100);
 	}		  
- 
+
 });

@@ -2,6 +2,15 @@ App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 	beer_records: DS.hasMany("beer"),
 	command: DS.belongsTo("command"),
 
+	//
+	//Constants
+	//
+	OUNCES_PER_BEER: 16,
+	CONVERSION_FACTOR: 5.14,
+	MY_WEIGHT: 170,
+	MALE_ALCOHOL_DISTRIBUTION_RATIO: .73,
+	ABV_ELIMINATED_PER_HOUR: .015,
+
 	init: function(){
 		this._super();
 		this.model_name = "beers";
@@ -78,8 +87,8 @@ App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 				var beer_abv = beer.get("beer_abv");
 				//There's no way to differentiate the volume based on untappd data,
 				//So we'll overestimate and assume 16 oz
-				var number_of_drinks = (beer_abv / 100) * 16; //TODO this line and the next couple: magic numbers!
-				var abv_from_drink = number_of_drinks * 5.14 / 170 * .73;
+				var number_of_drinks = (beer_abv / 100) * self.OUNCES_PER_BEER; //TODO this line and the next couple: magic numbers!
+				var abv_from_drink = number_of_drinks * self.CONVERSION_FACTOR / self.MY_WEIGHT * self.MALE_ALCOHOL_DISTRIBUTION_RATIO;
 				var time_of_drink = beer.get("timestamp");
 				var now_utc_time = new Date().getTime();
 				var parsed_date = self.parse_date_string(time_of_drink);
@@ -91,7 +100,7 @@ App.Beers = DS.Model.extend(App.SharedModelLogic, App.DateLibrary,{
 					return bac;
 				}
 				else{
-					var abv_absorbed_over_time = .015 * difference_in_time_in_hours;
+					var abv_absorbed_over_time = self.ABV_ELIMINATED_PER_HOUR * difference_in_time_in_hours;
 					var net_abv_from_beer = abv_from_drink - abv_absorbed_over_time;
 					if( net_abv_from_beer < 0 ){
 						net_abv_from_beer = 0;
