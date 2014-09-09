@@ -21,3 +21,9 @@ DS.JSONSerializer.reopen({
 App.ApplicationAdapter = DS.FixtureAdapter.extend({
 
 });
+
+App.UserActionAdapter = DS.RESTAdapter.extend({});
+
+DS.RESTAdapter.reopen({
+	namespace: '/api/v1'
+});
