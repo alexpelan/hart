@@ -1,7 +1,0 @@
-h1 Terminal 
-
-form
-	view Ember.TextField placeholder='Enter your command here (type help for help)' value=command classNames="command"
-	input type='submit' value='Submit' click='respondToCommand'
-
-outlet
