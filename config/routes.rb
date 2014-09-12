@@ -13,6 +13,6 @@ Hart::Application.routes.draw do
 
 	root to: 'home#index'
 
-	mount QUnit::Rails::Engine => 'qunit'
+	#mount QUnit::Rails::Engine => 'qunit'
 	get '*path', to: 'home#index'
 end
