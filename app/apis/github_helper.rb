@@ -15,7 +15,7 @@ class GithubHelper
 		hart_project = Project.new
 		hart_project.populate_attributes(hart)
 		hart_project.screenshot_url = "http://i.imgur.com/DqQMyHX.jpg"
-		hart_project.blog_post_url = "about:blank" #TODO: write this post and link it up here
+		hart_project.blog_post_url = "http://alexpelan.tumblr.com/post/97307077530/a-portfolio-and-personal-api-using-ember-js-with-a"
 
 
 		lujack_project = Project.new
