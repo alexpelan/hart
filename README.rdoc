@@ -6,6 +6,23 @@ This is the first site I've ever built with Ember.js - I wanted to try out a jav
 == Project Status
 Hart should be up and running as of September 2014. Feel free to submit issues if you see them, either bugs or enhancements would be accepted. Since this is my personal site, I probably won't accept any pull requests.
 
+== How to get this thing running
+I just tried to get this running on a new machine after a few years and figured I would document my steps to ease my future pain.
+
+Install rvm: `\curl -sSL https://get.rvm.io | bash -s stable`
+
+Install Ruby 1.9.3 using rvm: `rvm install "ruby-1.9.3-p551"` Then use that as the default ruby: `rvm --default use 1.9.3`
+
+Install bundler: `gem install bundler`
+
+Install all of the dependencies of this project, in the project foloder: `bundle install`
+
+Install postgres: `gem install pg -v '0.17.1'`
+
+Create database and migrations: `rake db:create`, `rake db:migrate`
+
+Set ENV variables, then `rails server`
+
 == FAQ
 
 Why is it called Hart? 
