@@ -1,7 +1,7 @@
 class GoodreadsHelper
 	
 	def initialize
-		@goodreads = Goodreads::Client.new(:api_key => ENV["GOODREADS_API_KEY"], :api_secret => ENV["GOODREADS_API_SECET"])
+		@goodreads = Goodreads::Client.new(:api_key => ENV["GOODREADS_API_KEY"], :api_secret => ENV["GOODREADS_API_SECRET"])
 	end
 
 	def get_currently_reading
