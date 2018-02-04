@@ -11,7 +11,7 @@ I just tried to get this running on a new machine after a few years and figured 
 
 Install rvm: `\curl -sSL https://get.rvm.io | bash -s stable`
 
-Install Ruby 1.9.3 using rvm: `rvm install "ruby-1.9.3-p551"` Then use that as the default ruby: `rvm --default use 1.9.3`
+Install Ruby 2.0.0 using rvm: `rvm install 2.0.0` Then use that as the default ruby: `rvm --default use 2.0.0`
 
 Install bundler: `gem install bundler`
 
