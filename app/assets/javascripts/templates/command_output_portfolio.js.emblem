@@ -20,11 +20,12 @@ if command.portfolio.is_model_populated
 							p
 								a href=project.repo_url
 									|View code on Github
-					div.tumblr_icon.icon
-						div.mouseover_text
-							p
-								a href=project.blog_post_url
-									|Blog post
+					if project.blog_post_url
+						div.tumblr_icon.icon
+							div.mouseover_text
+								p
+									a href=project.blog_post_url
+										|Blog post
 else
 
 	if command.portfolio.did_api_error_occur

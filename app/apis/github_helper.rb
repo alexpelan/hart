@@ -8,28 +8,31 @@ class GithubHelper
 	
 		#Get each repo that we're interested in
 		hart = @github.repos.get user: "alexpelan", repo: "hart"
-		lujack = @github.repos.get user: "alexpelan", repo: "lujack"
-          	bertelli = @github.repos.get user: "alexpelan", repo: "bertelli"
+		popcode = @github.repos.get user: "popcodeorg", repo: "popcode"
+        huarte = @github.repos.get user: "alexpelan", repo: "huarte"
+        hornung = @github.repos.get user: "alexpelan", repo: "hornung"
 
 		#Take only the attributes that we're interested in, as well as calculated information
 		hart_project = Project.new
 		hart_project.populate_attributes(hart)
-		hart_project.screenshot_url = "http://i.imgur.com/DqQMyHX.jpg"
+		hart_project.screenshot_url = "https://i.imgur.com/DqQMyHX.jpg"
 		hart_project.blog_post_url = "http://alexpelan.tumblr.com/post/97307077530/a-portfolio-and-personal-api-using-ember-js-with-a"
 
+		popcode_project = Project.new
+		popcode_project.populate_attributes(popcode)
+		popcode_project.screenshot_url = "https://i.imgur.com/fiMZRVm.png"
+		popcode_project.project_url = "https://www.popcode.org"
 
-		lujack_project = Project.new
-		lujack_project.populate_attributes(lujack)
-		lujack_project.screenshot_url = "http://i.imgur.com/7eP56PC.jpg"
-		lujack_project.blog_post_url = "http://alexpelan.tumblr.com/post/89700507255/my-favorite-tweeters"
+		huarte_project = Project.new
+		huarte_project.populate_attributes(huarte)
+		huarte_project.screenshot_url = "https://i.imgur.com/s3HQyr6.png"
 
-		bertelli_project = Project.new
-		bertelli_project.populate_attributes(bertelli)
-		bertelli_project.screenshot_url = "http://i.imgur.com/Pwq75dv.jpg"	
-		bertelli_project.blog_post_url = "http://alexpelan.tumblr.com/post/63319011149/i-made-a-thing-bertelli-edition"
+		hornung_project = Project.new
+		hornung_project.populate_attributes(hornung)
+		hornung_project.screenshot_url = "https://i.imgur.com/QXl3Dko.png"
 
-		if hart_project.valid? and lujack_project.valid? and bertelli_project.valid?
-			return [hart_project, lujack_project, bertelli_project]
+		if hart_project.valid? and popcode_project.valid? and huarte_project.valid? and hornung_project.valid?
+			return [hart_project, huarte_project, hornung_project, popcode_project]
 		else
 			return []
 		end
