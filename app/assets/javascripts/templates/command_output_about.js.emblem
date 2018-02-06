@@ -4,10 +4,13 @@ br
 h2.about_header Biography
 
 p
-	|I'm Alex Pelan, a full stack software developer in NYC. Let's start at the end and work our way backwards, shall we?
+	|I'm Alex Pelan, a full stack software developer. I live in Brooklyn, NY with my wife and our beloved beagle dog, Scout. Let's start at the end and work our way backwards, shall we?
 
 p
-	|I'm currently a software engineer at <a href="http://www.cureatr.com">Cureatr</a> in NYC. I started in October 2014 - more updates on my time here to come.
+	|I'm currently a software engineer at <a href="http://www.cureatr.com">Cureatr</a> in NYC. I started in October 2014 and have lead frontend web development there since then. I've modernized and refactored our two Javascript web apps and built features on the backend in Python.
+
+p
+	|Since 2015, I've volunteered teaching HTML, CSS, and JavaScript with <a href="https://scripted.org">ScriptEd</a>. Teaching people to code is the best.
 
 p
 	|From 2011-2014, I worked at <a href="http://www.epic.com">Epic</a> near Madison, WI as a Software Developer on EpicCare-Ambulatory, an outpatient Electronic Medical Record. I worked to transition our electronic <a href="http://www.cdc.gov/healthyweight/images/growthchart_example1.gif">Growth Charts</a> to a web based solution in C#, Javascript, and SVG. I also got an opportunity to do both people and product management, working on our Trending Tools and Nursing Documentation. 
@@ -16,7 +19,7 @@ p
 	|From 2007-2011, I attended the <a href="http://www.nd.edu">University of Notre Dame.</a> After spending my first two years studying Chemical Engineering, I realized the only assignments I enjoyed were ones that involved programming, and switched to Computer Science. In the summer of 2010, I researched using networks to describe and predict the global climate. I wrote <a href="http://www.icensa.com/content/empirical-comparison-correlation-measures-and-pruning-levels-complex-networks-representing">my senior thesis</a> on this research, and got to present the paper in Paris.
 
 p
-	|My interests outside of programming are playing and listening to music, improv comedy, watching sports (college football in particular), and reading. Those interests tend to drive the sorts of side projects that I work on.
+	|My interests outside of programming are playing and listening to music, watching sports (college football in particular), and reading. Those interests tend to drive the sorts of side projects that I work on.
 
 h2.about_header Resume
 
